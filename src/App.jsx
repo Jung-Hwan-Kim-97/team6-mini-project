@@ -9,7 +9,11 @@ import Modal from './components/Modal'
 import Home from './pages/Home/Home'
 import ProductList from './pages/ProductList/ProductList'
 const App = () => {
-  const { onModal } = useProduct()
+  const { onModal, productList } = useProduct()
+
+  useEffect(() => {
+    console.log(productList)
+  }, [])
 
   return (
     <>

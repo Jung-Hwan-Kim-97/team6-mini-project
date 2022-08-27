@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { useSelector, useDispatch } from 'react-redux'
-import data from '../assets/data.json'
+import data from '../data/data.json'
 
 const productSlice = createSlice({
   name: 'productSlice',
