@@ -5,7 +5,7 @@ import data from '../data/data.json'
 const productSlice = createSlice({
   name: 'productSlice',
   initialState: {
-    onModal: true,
+    onModal: false,
     productList: data.result.baseList,
   },
   reducers: {
