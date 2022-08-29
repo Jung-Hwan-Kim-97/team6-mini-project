@@ -9,6 +9,10 @@ import theme from './assets/theme'
 // RTK
 import { Provider } from 'react-redux'
 import store from './stores/store.js'
+// swiper.js
+import 'swiper/css/bundle'
+import './components/swiperStyles.css'
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
