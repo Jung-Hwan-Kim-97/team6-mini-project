@@ -1,8 +1,12 @@
 import React, { Children } from 'react'
 import styled from 'styled-components'
-function HomeProductS({name}) {
+import { useNavigate } from 'react-router-dom'
+
+function HomeProductS({name, url}) {
+  const navigate = useNavigate();
+
   return (
-    <StyledHomeProductS>{name}</StyledHomeProductS>
+    <StyledHomeProductS onClick={() => navigate(url)}>{name}</StyledHomeProductS>
   )
 }
 
@@ -16,5 +20,4 @@ const StyledHomeProductS = styled.div`
   height: 155px;
   border-radius: 0.3rem;
   flex-grow: 1;
-
 `

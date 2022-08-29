@@ -20,7 +20,7 @@ const Home = () => {
         <HomeBanner>광고용 배너(스와이퍼 적용예정)</HomeBanner>
         <div>
           <HomeProductS name={'금융 상품'} />
-          <HomeProductS name={'관심 상품'} />
+          <HomeProductS name={'관심 상품'} url={'favorite'} />
         </div>
       </StyledContainer>
 
