@@ -3,28 +3,44 @@ import styled from 'styled-components'
 import theme from '../assets/theme'
 
 const Footer = () => {
+  const prevent = e => {
+    e.preventDefault()
+  }
+
   return (
     <StyledFooter>
       <div className="etc-info">
         <div className="left-etc">
           <ul className="left-etc-item1">
             <li>
-              <a href="#">개인정보처리방침</a>
+              <a href="#" onClick={prevent}>
+                개인정보처리방침
+              </a>
             </li>
             <li>
-              <a href="#">신용정보활용체제</a>
+              <a href="#" onClick={prevent}>
+                신용정보활용체제
+              </a>
             </li>
             <li>
-              <a href="#">전자체제</a>
+              <a href="#" onClick={prevent}>
+                전자체제
+              </a>
             </li>
             <li>
-              <a href="#">사고신고</a>
+              <a href="#" onClick={prevent}>
+                사고신고
+              </a>
             </li>
             <li>
-              <a href="#">보호금융상품등록부</a>
+              <a href="#" onClick={prevent}>
+                보호금융상품등록부
+              </a>
             </li>
             <li>
-              <a href="#">영업점 안내</a>
+              <a href="#" onClick={prevent}>
+                영업점 안내
+              </a>
             </li>
           </ul>
           <ul className="left-etc-item2">
@@ -45,7 +61,7 @@ const Footer = () => {
 }
 
 const StyledFooter = styled.div`
-  position: fixed;
+  position: relative;
   width: 100%;
   bottom: 0;
   height: 60px;
