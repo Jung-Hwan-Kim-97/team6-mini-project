@@ -10,7 +10,7 @@ import styled from 'styled-components'
 /* feat4 list ---
 x Home.jsx 생성
 x 경로 path='/'로 적용
-  스와이퍼 사용
+x  스와이퍼 사용
 x 컴포넌트 목록 적용
 
 + css 적용 필요
@@ -66,7 +66,7 @@ border: 1px solid green;
   display: flex;
   flex-direction: column;
   margin: 5rem auto;
-  width: 85%;
+  width: 95%;
   align-items: space-between;
   justify-content: space-between;
 `
