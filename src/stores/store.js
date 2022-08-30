@@ -7,7 +7,7 @@ const store = configureStore({
   reducer: {
     test: testSlice,
     product,
-    favorite: favoriteSlice.reducer
+    favorite: favoriteSlice
   },
 })
 
