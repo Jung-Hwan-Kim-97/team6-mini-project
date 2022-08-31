@@ -57,6 +57,10 @@ body {
 }
 .swiper-slide img {
   display: block;
-  height: 280px;
+  height: 380px;
   object-fit: cover;
+}
+
+a {
+  color:#2c2c2c ;
 }

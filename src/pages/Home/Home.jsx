@@ -3,11 +3,16 @@ import HomeProductS from '../../components/HomeProductS'
 import HomeBanner from '../../components/HomeBanner'
 import HomeNav from '../../components/HomeNav'
 import styled from 'styled-components'
-import { result } from '../../data/data.json'
+
+import { useProduct } from '../../stores/productSlice'
 
 const Home = () => {
+  const { productList } = useProduct()
+
+  // 로그인 상태 확인 필요
   const isLogin = true
   const user = '김패캠'
+
   const html = (
     <StyledWrapper>
       {isLogin ? (
@@ -21,7 +26,7 @@ const Home = () => {
         </StyledLoginArea>
       )}
       <StyledContainer>
-        <HomeBanner data={result} />
+        <HomeBanner data={productList} />
       </StyledContainer>
       <HomeNav />
       <p
@@ -35,9 +40,7 @@ const Home = () => {
         고객님을 위한 맞춤 추천! 🌟
       </p>
       <StyledContainer>
-        <HomeProductS name={'직업/나이맞춘추천상품1'} />
-        <HomeProductS name={'직업/나이맞춘추천상품2'} />
-        <HomeProductS name={'직업/나이맞춘추천상품3'} />
+        <HomeProductS data={productList} />
       </StyledContainer>
       <p
         style={{
@@ -50,13 +53,10 @@ const Home = () => {
         FastBank의 또 다른 추천 상품을 확인해 보세요! 🪄
       </p>
       <StyledContainer>
-        <HomeProductS name={'추천상품1'} />
-        <HomeProductS name={'추천상품2'} />
-        <HomeProductS name={'추천상품3'} />
+        <HomeProductS data={productList} />
       </StyledContainer>
     </StyledWrapper>
   )
-
   return html
 }
 
