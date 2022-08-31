@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 
 const initialState = {
-  favoriteList: []
+  favoriteList: JSON.parse(localStorage.getItem('favorite')) || []
 };
 
 const favoriteSlice = createSlice({
@@ -10,7 +10,16 @@ const favoriteSlice = createSlice({
   initialState,
   reducers: {
     favoriteHandler: (state, action) => {
-      state.favoriteList.includes(action.payload) ? (state.favoriteList = state.favoriteList.filter((element) => element !== action.payload)) : (state.favoriteList = [...state.favoriteList, action.payload])
+      state.favoriteList.includes(action.payload) ? (state.favoriteList = state.favoriteList.filter((element) => element.id !== action.payload.id)) : (state.favoriteList = [...state.favoriteList, action.payload])
+      localStorage.setItem('favorite', JSON.stringify(state.favoriteList))
+    },
+    addFavorite: (state, action) => {
+      state.favoriteList = [...state.favoriteList, action.payload]
+      localStorage.setItem('favorite', JSON.stringify(state.favoriteList))
+    },
+    deleteFavorite: (state, action) => {
+      state.favoriteList = state.favoriteList.filter((element) => element.id !== action.payload.id)
+      localStorage.setItem('favorite', JSON.stringify(state.favoriteList))
     }
   }
 });
@@ -21,6 +30,6 @@ export function useFavorite() {
   return { dispatch, favorite };
 };
 
-export const { favoriteHandler } = favoriteSlice.actions;
+export const { favoriteHandler, addFavorite, deleteFavorite } = favoriteSlice.actions;
 
-export default favoriteSlice;
+export default favoriteSlice.reducer;
