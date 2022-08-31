@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components';
 
 import { useNavigate } from 'react-router-dom'
-import { deleteFavorite, favoriteHandler, useFavorite } from '../stores/favoriteSlice';
+import { useFavorite } from '../stores/favoriteSlice';
 import { modalHandler } from '../stores/productSlice';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import FavoriteButton from './FavoriteButton';
 
-function FavoriteItem({ item, favorite }) {
+function FavoriteItem({ item }) {
   const { dispatch } = useFavorite();
   const navigate = useNavigate()
 
@@ -34,25 +34,7 @@ function FavoriteItem({ item, favorite }) {
           >
             상세보기
           </button>
-          <button className="btn btn_favorite" onClick={() => {
-            dispatch(deleteFavorite(item));
-
-          }}>
-            {/* <BsFillSuitHeartFill color="80BFDE" size="22" /> */}
-            { favorite.favoriteList ? <AiFillHeart /> : <AiOutlineHeart />}
-          </button>
-          {/* <button className="btn btn_favorite">
-            { isFavorite 
-              ? <AiFillHeart onClick={() => {
-                  dispatch(deleteFavorite(item));
-                  toggleFavorite();
-                }} /> 
-              : <AiOutlineHeart onClick={() => {
-                  dispatch(addFavorite(item));
-                  toggleFavorite();
-                }} />
-            }
-          </button> */}
+          <FavoriteButton item={item} />
         </div>
       </div>
     </StyledProductItem>
