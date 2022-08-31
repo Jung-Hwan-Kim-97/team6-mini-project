@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 //react-icons
 import { BsFillSuitHeartFill } from 'react-icons/bs'
@@ -7,9 +7,20 @@ import { useProduct } from '../../../stores/productSlice'
 import { modalHandler } from '../../../stores/productSlice'
 //react-router-dom
 import { useNavigate } from 'react-router-dom'
+import { addFavorite, deleteFavorite, favoriteHandler } from '../../../stores/favoriteSlice'
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
+import { useSelector } from 'react-redux'
+import { current } from '@reduxjs/toolkit'
+import FavoriteButton from '../../../components/FavoriteButton'
+
 const ProductItem = ({ item }) => {
-  const { dispatch } = useProduct()
-  const navigate = useNavigate()
+  const { dispatch } = useProduct();
+  const navigate = useNavigate();
+
+  const [isFavorite, setIsFavorite] = useState(false);
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite);
+  };
 
   return (
     <StyledProductItem>
@@ -35,9 +46,7 @@ const ProductItem = ({ item }) => {
           >
             상세보기
           </button>
-          <button className="btn btn_favorite">
-            <BsFillSuitHeartFill color="80BFDE" size="22" />
-          </button>
+          <FavoriteButton isFavorite={isFavorite} toggleFavorite={toggleFavorite} item={item} />
         </div>
       </div>
     </StyledProductItem>
