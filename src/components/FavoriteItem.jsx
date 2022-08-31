@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-
+import { FaShoppingCart } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { useFavorite } from '../stores/favoriteSlice';
 import { modalHandler } from '../stores/productSlice';
@@ -11,13 +11,19 @@ function FavoriteItem({ item }) {
   const navigate = useNavigate()
 
   return (
-    <StyledProductItem>
-      <div className="item-container">
-        <div className="left-info">
+    <StyledFavoriteItem>
+      <article className="item-container">
+        <div className="item-info">
+          <h3>{item.kor_co_nm}</h3>
           <h2>{item.fin_prdt_nm}</h2>
+          <p>{item.mtrt_int}</p>
           <p>상품 가격: {item.max_limit}원</p>
         </div>
-        <div className="actions">
+        <div className="button-box">
+          <button className="btn">
+            <FaShoppingCart />
+          </button>
+          <FavoriteButton item={item} />
           <button
             className="btn"
             onClick={() => {
@@ -34,14 +40,13 @@ function FavoriteItem({ item }) {
           >
             상세보기
           </button>
-          <FavoriteButton item={item} />
         </div>
-      </div>
-    </StyledProductItem>
+      </article>
+    </StyledFavoriteItem>
   )
 }
 
-const StyledProductItem = styled.div`
+const StyledFavoriteItem = styled.section`
   background: linear-gradient(to bottom right, #5d5ffc, #47e975);
   border-radius: 8px;
   margin: 20px;
@@ -52,14 +57,14 @@ const StyledProductItem = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .left-info {
+    .item-info {
       padding: 10px;
       box-sizing: border-box;
       h2 {
         margin-bottom: 10px;
       }
     }
-    .actions {
+    .button-box {
       margin-right: 10px;
       .btn {
         margin: 0 5px;
