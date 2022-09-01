@@ -5,6 +5,7 @@ import { Autoplay, Pagination } from 'swiper'
 import styled from 'styled-components'
 
 function HomeBanner({ data }) {
+  //추가 데이터로 인해 랜덤 적용 안함
   const bannerData = data.slice(0, 3)
   const explainData = [
     '고객님만을 위한 특별한 적금, THIS IS ALL FOR YOU! 안성 맞춤 서비스를 만나보세요',

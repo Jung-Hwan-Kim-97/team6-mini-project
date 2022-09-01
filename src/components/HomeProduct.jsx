@@ -2,12 +2,20 @@ import React from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 
-function HomeProductS({ data }) {
-  const dummyData = data.slice(8, 11)
+function HomeProduct({ data }) {
+  //더미 데이터를 위한 random 함수
+  function getRandomInt(min, max) {
+    min = Math.ceil(min)
+    max = Math.floor(max)
+    return Math.floor(Math.random() * (max - min)) + min //최댓값은 제외, 최솟값은 포함
+  }
+  const randomNum = getRandomInt(0, 90)
+
+  const dummyData = data.slice(randomNum, randomNum + 3)
   const navigate = useNavigate()
 
   return dummyData.map(item => (
-    <StyledHomeProductS key={item.id}>
+    <StyledHomeProduct key={item.id}>
       <div>
         <p>[{item.kor_co_nm}]</p>
         <p>{item.fin_prdt_nm}</p>
@@ -35,13 +43,13 @@ function HomeProductS({ data }) {
           자세히
         </button>
       </div>
-    </StyledHomeProductS>
+    </StyledHomeProduct>
   ))
 }
 
-export default HomeProductS
+export default HomeProduct
 
-const StyledHomeProductS = styled.div`
+const StyledHomeProduct = styled.div`
   box-sizing: border-box;
   box-shadow: 1px 1px 6px #d6d6d6;
   padding: 10px 5px;
