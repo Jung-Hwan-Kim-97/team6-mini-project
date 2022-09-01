@@ -1,9 +1,10 @@
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { BsFillSuitHeartFill, BsCart3 } from 'react-icons/bs'
+import { BsCart3 } from 'react-icons/bs'
 import ProductNotice from './ProductNotice'
 import { modalHandler, useProduct } from '~/stores/productSlice'
+import FavoriteButton from '../../../components/FavoriteButton'
 const ProductDetail = () => {
   const { state } = useLocation()
   const navigate = useNavigate()
@@ -19,7 +20,7 @@ const ProductDetail = () => {
       <section className="product-info">
         <div className="product-icons">
           <button className="icon">
-            <BsFillSuitHeartFill size="30" color="#2D71C4" />
+            <FavoriteButton item={state} />
           </button>
           <button className="icon">
             <BsCart3 size="30" color="#2D71C4" />

@@ -1,15 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
+import FavoriteButton from '../../../components/FavoriteButton'
 //react-icons
-import { BsFillSuitHeartFill } from 'react-icons/bs'
+
 //productSlice
 import { useProduct } from '../../../stores/productSlice'
 import { modalHandler } from '../../../stores/productSlice'
 //react-router-dom
 import { useNavigate } from 'react-router-dom'
+
 const ProductItem = ({ item }) => {
-  const { dispatch } = useProduct()
-  const navigate = useNavigate()
+  const { dispatch } = useProduct();
+  const navigate = useNavigate();
 
   return (
     <StyledProductItem>
@@ -35,9 +37,7 @@ const ProductItem = ({ item }) => {
           >
             상세보기
           </button>
-          <button className="btn btn_favorite">
-            <BsFillSuitHeartFill color="80BFDE" size="22" />
-          </button>
+          <FavoriteButton item={item} />
         </div>
       </div>
     </StyledProductItem>
