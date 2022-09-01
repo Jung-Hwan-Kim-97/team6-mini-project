@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import styled from 'styled-components'
 import { useProduct } from '../../stores/productSlice'
 import AOS from 'aos'
@@ -11,17 +11,21 @@ import HomeFavorite from '../../components/HomeFavorite'
 const Home = () => {
   const { productList } = useProduct()
 
-  useEffect(() => {
-    AOS.init({ duration: 2000 })
-  })
-
   // 로그인 조건 적용 필요
   const isLogin = true
   const user = '김패캠'
 
+  const init = useCallback(() => {
+    AOS.init({ duration: 2000 })
+  }, [])
+
+  useEffect(() => {
+    init()
+  }, [isLogin, user, productList])
+
   const html = (
     <StyledWrapper>
-      {/* // 로그인 */}
+      {/* 로그인 */}
       {isLogin ? (
         <StyledLoginArea>
           <div>
@@ -107,6 +111,7 @@ const StyledLoginArea = styled.div`
   flex-grow: 1;
   font-size: 21px;
   font-weight: 500;
+
   div {
     display: flex;
     justify-content: space-between;
