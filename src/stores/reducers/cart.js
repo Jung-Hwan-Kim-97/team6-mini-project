@@ -1,17 +1,23 @@
-/* 액션 타입 */
-import { createAction } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
-const addItemCart = createAction('ADD_ITEM_CART')
+let cartList = createSlice({
+  name: 'cartList',
+  initialState:[
 
-const deleteItemCart = createAction('DELETE_ITEM_CART')
+  ],
+  reducers: {
 
-
-const initState = {
-  cartList : []
-}
-
-const cartReducer = createReducer(initState, {
-
-  [addItemCart] : (state, action) => state.cartList + action.payload
-  [deleteItemCart]
+    addItem(state, action) {
+      state.push(action.payload)
+    },
+    deleteItem(state, action) {
+      const index = state.findIndex((item) => item.id === action.payload)
+      state.splice(index, 1);
+    }
+  }
 })
+
+
+export let { addItem, deleteItem } = cartList.actions
+
+export default cartList;
