@@ -1,26 +1,21 @@
-import React, { useEffect } from 'react'
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
-import { addFavorite, deleteFavorite, favoriteHandler, useFavorite } from '../stores/favoriteSlice';
+import React, { useMemo } from 'react'
+import { AiFillHeart } from 'react-icons/ai'
+import { addFavorite, deleteFavorite, useFavorite } from '../stores/favoriteSlice';
 import styled from 'styled-components';
 
-function FavoriteButton({isFavorite, toggleFavorite, item}) {
+function FavoriteButton({ item }) {
   const { dispatch, favorite } = useFavorite();
 
-  useEffect(() => {
-    console.log(isFavorite)
-    
-  },[])
+  const isFavorite = useMemo(() => favorite?.some(element => element.id === item.id))
 
   return (
-    <FavoriteBtn className="btn btn_favorite">
+    <FavoriteBtn>
       { isFavorite 
-        ? <AiFillHeart onClick={() => {
+        ? <AiFillHeart className='favorite-icon' color='#FF9933' onClick={() => {
             dispatch(deleteFavorite(item));
-            toggleFavorite();
           }} /> 
-        : <AiOutlineHeart onClick={() => {
+        : <AiFillHeart className='favorite-icon' color='#80BFDE' onClick={() => {
             dispatch(addFavorite(item));
-            toggleFavorite();
           }} />
       }
     </FavoriteBtn>
@@ -28,18 +23,7 @@ function FavoriteButton({isFavorite, toggleFavorite, item}) {
 }
 
 const FavoriteBtn = styled.button`
-  .btn {
-    margin: 0 5px;
-    outline: none;
-    border: none;
-    padding: 5px 20px;
-    background-color: ${({ theme }) => theme.palette.cobaltBlue};
-    color: #fff;
-  }
-  .btn_favorite {
-    background-color: transparent;
-    padding: 0;
-  }
+  
 `
 
 export default FavoriteButton
