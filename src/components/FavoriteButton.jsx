@@ -23,7 +23,11 @@ function FavoriteButton({ item }) {
 }
 
 const FavoriteBtn = styled.button`
-  
+  outline: none;
+  border: none;
+  background-color: transparent;
+  font-size: 30px;
+  cursor: pointer;
 `
 
 export default FavoriteButton
