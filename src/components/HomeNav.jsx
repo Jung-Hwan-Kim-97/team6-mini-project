@@ -1,28 +1,34 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { buttonList } from '../data/homeData'
 
 function HomeNav() {
-  const navHandler = e => {
-    const value = e.currentTarget.getAttribute('name')
-    alert(`${value} 서비스는 추가 예정입니다! 😭`)
-  }
+  const [iconValue, setIconValue] = useState('')
+
+  const navHandler = useCallback(
+    e => {
+      const value = e.currentTarget.getAttribute('name')
+      setIconValue(value)
+      alert(`${value} 서비스는 추가 예정입니다! 😭`)
+    },
+    [iconValue],
+  )
 
   return (
     <StyledHomeNav>
       <p>주요 서비스</p>
       <hr />
       <div className="icons">
-        {buttonList.map(item => {
+        {buttonList.map(list => {
           return (
             <div
               className="icon"
-              key={item.id}
-              name={item.name}
+              key={list.id}
+              name={list.name}
               onClick={navHandler}
             >
-              <item.icon className="icon" size="35" />
-              {item.name}
+              <list.icon className="icon" size="35" />
+              {list.name}
             </div>
           )
         })}

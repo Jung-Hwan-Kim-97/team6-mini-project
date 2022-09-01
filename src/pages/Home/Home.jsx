@@ -40,7 +40,7 @@ const Home = () => {
       )}
 
       {/* HomeBanner */}
-      <HomeBanner data={productList} />
+      <HomeBanner dataList={productList} />
 
       {/* HomeNav */}
       <div data-aos="fade-up">
@@ -51,7 +51,7 @@ const Home = () => {
       <StyledContainer data-aos="fade-up">
         <p className="title">고객님을 위한 맞춤 추천! 🌟</p>
         <div className="wrap">
-          <HomeProduct data={productList} />
+          <HomeProduct dataList={productList} />
         </div>
       </StyledContainer>
 
@@ -61,7 +61,7 @@ const Home = () => {
           FastBank의 또 다른 추천 상품을 확인해 보세요! 🪄
         </p>
         <div className="wrap">
-          <HomeProduct data={productList} />
+          <HomeProduct dataList={productList} />
         </div>
       </StyledContainer>
 
@@ -69,7 +69,7 @@ const Home = () => {
       <StyledContainer data-aos="fade-up">
         <p className="title">이런 상품은 어떠세요? 🤔</p>
         <div className="wrap">
-          <HomeProduct data={productList} />
+          <HomeProduct dataList={productList} />
         </div>
       </StyledContainer>
     </StyledWrapper>

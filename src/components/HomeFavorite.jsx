@@ -1,17 +1,18 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useCallback } from 'react'
 
 import styled from 'styled-components'
 
 function HomeFavorite() {
   const navigate = useNavigate()
+  useEffect(() => {}, [navigate])
+
+  const favoriteHandler = useCallback(() => {
+    navigate('/favorite')
+  }, [navigate])
 
   return (
-    <StyledHomeFavorite
-      onClick={() => {
-        navigate('/favorite')
-      }}
-    >
+    <StyledHomeFavorite onClick={favoriteHandler}>
       즐겨찾기 🌟
     </StyledHomeFavorite>
   )
