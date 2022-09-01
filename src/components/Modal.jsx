@@ -1,22 +1,35 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
-import { useProduct, modalHandler } from '../stores/productSlice'
+import {
+  useProduct,
+  modalHandler,
+  purchaseConfirmation,
+  isVisibleHandler,
+} from '../stores/productSlice'
 
 const Modal = () => {
-  const { dispatch, onModal } = useProduct()
-
-  const purchasemode = () => {
-    dispatch(modalHandler())
+  const { dispatch, isVisible } = useProduct()
+  const navigate = useNavigate()
+  const purchaseMode = () => {
+    dispatch(isVisibleHandler())
+    setTimeout(() => dispatch(modalHandler()), 700)
+    dispatch(purchaseConfirmation())
     alert('신청이 완료되었습니다!')
+    navigate('/purchaseList')
   }
-  const cancelMode = () => dispatch(modalHandler())
+
+  const cancelMode = () => {
+    dispatch(isVisibleHandler())
+    setTimeout(() => dispatch(modalHandler()), 700)
+  }
 
   return (
-    <StyledModal test={onModal}>
+    <StyledModal isVisible={isVisible}>
       <div className="content">
         <p className="title">정말 신청하시겠습니까?</p>
         <div className="actions">
-          <button className="btn" onClick={purchasemode}>
+          <button className="btn" onClick={purchaseMode}>
             확인
           </button>
           <button className="btn" onClick={cancelMode}>
@@ -62,10 +75,10 @@ const StyledModal = styled.div`
     border-radius: 8px 8px 0 0;
     box-sizing: border-box;
     position: relative;
-    animation-name: ${({ test }) => {
-      if (test) {
+    animation-name: ${({ isVisible }) => {
+      if (isVisible) {
         return fadeInModal
-      } else if (!test) {
+      } else if (!isVisible) {
         return fadeOutModal
       }
     }};

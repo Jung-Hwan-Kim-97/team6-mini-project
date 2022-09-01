@@ -3,12 +3,28 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { BsFillSuitHeartFill, BsCart3 } from 'react-icons/bs'
 import ProductNotice from './ProductNotice'
-import { modalHandler, useProduct } from '~/stores/productSlice'
+import {
+  modalHandler,
+  useProduct,
+  purchaseRequest,
+  isVisibleHandler,
+} from '~/stores/productSlice'
+
 const ProductDetail = () => {
   const { state } = useLocation()
   const navigate = useNavigate()
-  const { dispatch } = useProduct()
+  const { dispatch, purchasedList, purchaseItem } = useProduct()
   console.log(state)
+
+  const purchaseRequestHandler = state => {
+    if (purchasedList.includes(state)) {
+      alert('이미 구매하신 상품입니다!')
+      return
+    }
+    dispatch(purchaseRequest(state))
+    dispatch(isVisibleHandler())
+    dispatch(modalHandler())
+  }
 
   return (
     <StyledProductDetail>
@@ -29,12 +45,12 @@ const ProductDetail = () => {
         <div className="detail-info">
           <div className="left-info">
             <ul>
-              <li>은행명:{state.kor_co_nm}</li>
-              <li>상품종류:{state.fin_prdt_nm}</li>
-              <li>상품가격:{state.max_limit}원</li>
-              <li>가입대상:{state.join_member}</li>
-              <li>가입경로:{state.join_way}</li>
-              <li>가입기간:{state.etc_note}</li>
+              <li>은행명: {state.kor_co_nm}</li>
+              <li>상품명: {state.fin_prdt_nm}</li>
+              <li>저축한도: {state.max_limit}원</li>
+              <li>가입대상: {state.join_member}</li>
+              <li>가입경로: {state.join_way}</li>
+              <li>가입기간: {state.etc_note}</li>
               <li>
                 상세 설명: {state.mtrt_int}
                 <p>{state.spcl_cnd}</p>
@@ -58,7 +74,7 @@ const ProductDetail = () => {
         <button
           className="btn"
           onClick={() => {
-            dispatch(modalHandler())
+            purchaseRequestHandler(state)
           }}
         >
           신청하기

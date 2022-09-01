@@ -1,15 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+
 import styled from 'styled-components'
 //react-icons
 import { BsFillSuitHeartFill } from 'react-icons/bs'
 //productSlice
-import { useProduct } from '../../../stores/productSlice'
-import { modalHandler } from '../../../stores/productSlice'
+import {
+  useProduct,
+  modalHandler,
+  purchaseRequest,
+  isVisibleHandler,
+} from '../../../stores/productSlice'
 //react-router-dom
 import { useNavigate } from 'react-router-dom'
 const ProductItem = ({ item }) => {
-  const { dispatch } = useProduct()
+  const { dispatch, purchasedList, purchaseItem } = useProduct()
   const navigate = useNavigate()
+
+  const purchaseRequestHandler = item => {
+    if (purchasedList.includes(item)) {
+      alert('이미 구매하신 상품입니다!')
+      return
+    }
+    // {
+    //   ...item,
+    //   purchaseTime: dayjs().format('YYYY년 MM월 DD일 HH시 mm분'),
+    // }
+    dispatch(purchaseRequest(item))
+    dispatch(isVisibleHandler())
+    dispatch(modalHandler())
+  }
 
   return (
     <StyledProductItem>
@@ -22,7 +41,7 @@ const ProductItem = ({ item }) => {
           <button
             className="btn"
             onClick={() => {
-              dispatch(modalHandler())
+              purchaseRequestHandler(item)
             }}
           >
             신청하기
@@ -50,7 +69,6 @@ const StyledProductItem = styled.div`
   margin: 20px;
   box-sizing: border-box;
   padding: 10px 0;
-  box-sizing: border-box;
   .item-container {
     display: flex;
     justify-content: space-between;
