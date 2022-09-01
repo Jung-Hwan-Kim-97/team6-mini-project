@@ -14,32 +14,36 @@ function FavoriteItem({ item }) {
     <StyledFavoriteItem>
       <article className="item-container">
         <div className="item-info">
-          <h3>{item.kor_co_nm}</h3>
-          <h2>{item.fin_prdt_nm}</h2>
-          <p>{item.mtrt_int}</p>
-          <p>상품 가격: {item.max_limit}원</p>
+          <h3 className='bank-name'>{item.kor_co_nm}</h3>
+          <h2 className='product-title'>{item.fin_prdt_nm}</h2>
+          <pre className='product-content'>{item.mtrt_int}</pre>
+          <p className='product-price'>상품 가격: {(item.max_limit).toLocaleString()}원</p>
         </div>
         <div className="button-box">
-          <button className="btn">
-            <FaShoppingCart />
-          </button>
-          <FavoriteButton item={item} />
-          <button
-            className="btn"
-            onClick={() => {
-              dispatch(modalHandler())
-            }}
-          >
-            신청하기
-          </button>
-          <button
-            className="btn"
-            onClick={() => {
-              navigate(`/productlist/${item.id}`, { state: item })
-            }}
-          >
-            상세보기
-          </button>
+          <div className='action-buttons'>
+            <button className="btn shopping-cart">
+              <FaShoppingCart color='#80BFDE' />
+            </button>
+            <FavoriteButton item={item} />
+          </div>
+          <div className='origin-buttons'>
+            <button
+              className="btn"
+              onClick={() => {
+                dispatch(modalHandler())
+              }}
+            >
+              신청하기
+            </button>
+            <button
+              className="btn"
+              onClick={() => {
+                navigate(`/productlist/${item.id}`, { state: item })
+              }}
+            >
+              상세보기
+            </button>
+          </div>
         </div>
       </article>
     </StyledFavoriteItem>
@@ -47,36 +51,74 @@ function FavoriteItem({ item }) {
 }
 
 const StyledFavoriteItem = styled.section`
-  background: linear-gradient(to bottom right, #5d5ffc, #47e975);
-  border-radius: 8px;
+  background: #FBFDFF;
+  border: 1px solid #2D71C4;
+  border-radius: 20px;
   margin: 20px;
-  box-sizing: border-box;
-  padding: 10px 0;
+  padding: 20px 20px 42px;
+  width: 60%;
   box-sizing: border-box;
   .item-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
     .item-info {
-      padding: 10px;
-      box-sizing: border-box;
-      h2 {
+      .bank-name {
+        font-size: 16px;
+      }
+      .product-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: #2D71C4;
+        margin: 10px 0;
+        word-break: keep-all;
+      }
+      .product-content {
+        font-size: 12px;
         margin-bottom: 10px;
+        line-height: 16px;
+      }
+      .product-price {
+        font-size: 22px;
+        position: absolute;
+        bottom: -22px;
+        right: 4px;
       }
     }
     .button-box {
-      margin-right: 10px;
+      display: flex;
+      align-items: flex-end;
+      flex-direction: column;
+      div {
+        display: inline-flex;
+      }
+      .action-buttons {
+        gap: 12px;
+        position: absolute;
+        top: 0;
+      }
+      .origin-buttons {
+        position: relative;
+        bottom: -40px;
+      }
       .btn {
         margin: 0 5px;
         outline: none;
         border: none;
-        padding: 5px 20px;
+        padding: 6px 20px;
         background-color: ${({ theme }) => theme.palette.cobaltBlue};
         color: #fff;
-      }
-      .btn_favorite {
-        background-color: transparent;
-        padding: 0;
+        font-size: 16px;
+        white-space: nowrap;
+        border-radius: 12px;
+        cursor: pointer;
+        &.shopping-cart {
+          background-color: transparent;
+          font-size: 30px;
+          padding: 0;
+          margin: 0;
+        }
       }
     }
   }
