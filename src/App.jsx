@@ -9,6 +9,8 @@ import ProductDetail from './pages/ProductList/ProductDetail/ProductDetail'
 // pages
 import Home from './pages/Home/Home'
 import ProductList from './pages/ProductList/ProductList'
+import Cart from './pages/Cart/Cart'
+
 const App = () => {
   const { onModal, productList } = useProduct()
 
@@ -20,6 +22,7 @@ const App = () => {
         <Route index element={<Home />} />
         <Route path="/productlist" element={<ProductList />} />
         <Route path="/productlist/:id" element={<ProductDetail />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />
     </>

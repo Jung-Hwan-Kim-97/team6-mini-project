@@ -1,0 +1,10 @@
+.textIndent {
+  text-indent: -9999px;
+}
+.btn {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
