@@ -23,7 +23,9 @@ const Home = () => {
     <StyledWrapper>
       {isLogin ? (
         <StyledLoginArea>
-          어서오세요, {user} 님! 😊
+          <div>
+            <p>어서오세요, {user} 님! 😊</p> <HomeFavorite />
+          </div>
           <hr />
         </StyledLoginArea>
       ) : (
@@ -32,22 +34,16 @@ const Home = () => {
         </StyledLoginArea>
       )}
       <HomeBanner data={productList} />
-      <div>
-        <HomeNav data-aos="fade-up" />
+      <div data-aos="fade-up">
+        <HomeNav />
       </div>
-      <StyledContainer data-aos="fade-up">
-        <p className="title">
-          이 상품에 관심있으셨나요? 즐겨찾기 목록을 빠르게 확인하세요! 🔎
-        </p>
-        <HomeFavorite />
-      </StyledContainer>
       <StyledContainer data-aos="fade-up">
         <p className="title">고객님을 위한 맞춤 추천! 🌟</p>
         <div className="wrap">
           <HomeProductS data={productList} />
         </div>
       </StyledContainer>
-      <StyledContainer data-aos="fade-up">
+      <StyledContainer data-aos="fade-up" data-aos-duration="1800">
         <p className="title">
           FastBank의 또 다른 추천 상품을 확인해 보세요! 🪄
         </p>
@@ -94,4 +90,9 @@ const StyledLoginArea = styled.div`
   flex-grow: 1;
   font-size: 21px;
   font-weight: 500;
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 `
