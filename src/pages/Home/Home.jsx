@@ -1,23 +1,36 @@
-import React from 'react'
-import HomeProductS from '../../components/HomeProductS'
+import React, { useCallback, useEffect } from 'react'
+import styled from 'styled-components'
+import { useProduct } from '../../stores/productSlice'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import HomeProduct from '../../components/HomeProduct'
 import HomeBanner from '../../components/HomeBanner'
 import HomeNav from '../../components/HomeNav'
-import styled from 'styled-components'
-
-import { useProduct } from '../../stores/productSlice'
+import HomeFavorite from '../../components/HomeFavorite'
 
 const Home = () => {
   const { productList } = useProduct()
 
-  // 로그인 상태 확인 필요
+  // 로그인 조건 적용 필요
   const isLogin = true
   const user = '김패캠'
 
+  const init = useCallback(() => {
+    AOS.init({ duration: 2000 })
+  }, [])
+
+  useEffect(() => {
+    init()
+  }, [isLogin, user, productList])
+
   const html = (
     <StyledWrapper>
+      {/* 로그인 */}
       {isLogin ? (
         <StyledLoginArea>
-          어서오세요, {user} 님! 😊
+          <div>
+            <p>어서오세요, {user} 님! 😊</p> <HomeFavorite />
+          </div>
           <hr />
         </StyledLoginArea>
       ) : (
@@ -25,35 +38,39 @@ const Home = () => {
           로그인을 해주세요 <hr />
         </StyledLoginArea>
       )}
-      <StyledContainer>
-        <HomeBanner data={productList} />
+
+      {/* HomeBanner */}
+      <HomeBanner dataList={productList} />
+
+      {/* HomeNav */}
+      <div data-aos="fade-up">
+        <HomeNav />
+      </div>
+
+      {/* HomeProduct - 1 */}
+      <StyledContainer data-aos="fade-up">
+        <p className="title">고객님을 위한 맞춤 추천! 🌟</p>
+        <div className="wrap">
+          <HomeProduct dataList={productList} />
+        </div>
       </StyledContainer>
-      <HomeNav />
-      <p
-        style={{
-          fontWeight: '600',
-          fontSize: '18px',
-          paddingBottom: '10px',
-          borderBottom: '#ccc solid 1px',
-        }}
-      >
-        고객님을 위한 맞춤 추천! 🌟
-      </p>
-      <StyledContainer>
-        <HomeProductS data={productList} />
+
+      {/* HomeProduct - 2 */}
+      <StyledContainer data-aos="fade-up" data-aos-duration="1800">
+        <p className="title">
+          FastBank의 또 다른 추천 상품을 확인해 보세요! 🪄
+        </p>
+        <div className="wrap">
+          <HomeProduct dataList={productList} />
+        </div>
       </StyledContainer>
-      <p
-        style={{
-          fontWeight: '600',
-          fontSize: '18px',
-          paddingBottom: '10px',
-          borderBottom: '#ccc solid 1px',
-        }}
-      >
-        FastBank의 또 다른 추천 상품을 확인해 보세요! 🪄
-      </p>
-      <StyledContainer>
-        <HomeProductS data={productList} />
+
+      {/* HomeProduct - 3 */}
+      <StyledContainer data-aos="fade-up">
+        <p className="title">이런 상품은 어떠세요? 🤔</p>
+        <div className="wrap">
+          <HomeProduct dataList={productList} />
+        </div>
       </StyledContainer>
     </StyledWrapper>
   )
@@ -72,14 +89,32 @@ const StyledWrapper = styled.div`
 `
 
 const StyledContainer = styled.div`
-  display: flex;
   font-weight: 700;
   margin: 10px 0;
-  justify-content: space-between;
+
+  .title {
+    font-weight: 600;
+    font-size: 18px;
+    padding-bottom: 10px;
+    border-bottom: #ccc solid 1px;
+    margin-bottom: 15px;
+  }
+
+  .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `
 
 const StyledLoginArea = styled.div`
   flex-grow: 1;
   font-size: 21px;
   font-weight: 500;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 `
