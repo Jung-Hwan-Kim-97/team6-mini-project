@@ -9,10 +9,6 @@ const favoriteSlice = createSlice({
   name: 'favorite',
   initialState,
   reducers: {
-    favoriteHandler: (state, action) => {
-      state.favoriteList.includes(action.payload) ? (state.favoriteList = state.favoriteList.filter((element) => element.id !== action.payload.id)) : (state.favoriteList = [...state.favoriteList, action.payload])
-      localStorage.setItem('favorite', JSON.stringify(state.favoriteList))
-    },
     addFavorite: (state, action) => {
       state.favoriteList = [...state.favoriteList, action.payload]
       localStorage.setItem('favorite', JSON.stringify(state.favoriteList))
@@ -30,6 +26,6 @@ export function useFavorite() {
   return { dispatch, favorite };
 };
 
-export const { favoriteHandler, addFavorite, deleteFavorite } = favoriteSlice.actions;
+export const { addFavorite, deleteFavorite } = favoriteSlice.actions;
 
 export default favoriteSlice.reducer;
