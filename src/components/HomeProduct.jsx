@@ -1,43 +1,28 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
-
+import { getRandomInt } from '../data/homeData'
 function HomeProduct({ data }) {
-  //더미 데이터를 위한 random 함수
-  function getRandomInt(min, max) {
-    min = Math.ceil(min)
-    max = Math.floor(max)
-    return Math.floor(Math.random() * (max - min)) + min //최댓값은 제외, 최솟값은 포함
-  }
   const randomNum = getRandomInt(0, 90)
-
   const dummyData = data.slice(randomNum, randomNum + 3)
   const navigate = useNavigate()
 
-  return dummyData.map(item => (
-    <StyledHomeProduct key={item.id}>
+  return dummyData.map(list => (
+    <StyledHomeProduct key={list.id}>
       <div>
-        <p>[{item.kor_co_nm}]</p>
-        <p>{item.fin_prdt_nm}</p>
+        <p>[{list.kor_co_nm}]</p>
+        <p>{list.fin_prdt_nm}</p>
         <p>
-          {String(item.mtrt_int)
+          {String(list.mtrt_int)
             .split(/-/g)
             .toString()
-            .slice(0, String(item.mtrt_int).indexOf('%'))}
+            .slice(0, String(list.mtrt_int).indexOf('%'))}
         </p>
         <p>신청 대상자</p>
-        <p>{item.join_member}</p>
-        <p>
-          최대{' '}
-          {String(item.max_limit).replace(
-            /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-            ',',
-          )}
-          원
-        </p>
+        <p>{list.join_member}</p>
         <button
           onClick={() => {
-            navigate(`/productlist/${item.id}`, { state: item })
+            navigate(`/productlist/${list.id}`, { state: list })
           }}
         >
           자세히
@@ -62,13 +47,14 @@ const StyledHomeProduct = styled.div`
     justify-content: center;
     display: flex;
     width: 310px;
-    height: 450px;
+    height: 400px;
     flex-direction: column;
 
     p {
       margin: 10px 25px 5px;
       flex-grow: 1;
       color: #747d94;
+      word-break: keep-all;
     }
 
     p:nth-child(1) {
@@ -80,7 +66,7 @@ const StyledHomeProduct = styled.div`
     p:nth-child(2) {
       font-size: 20px;
       font-weight: 800;
-      margin: 10px 0 10px;
+      margin: 10px 5px 10px;
       color: #2d71c3;
     }
 
