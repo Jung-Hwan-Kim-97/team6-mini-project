@@ -1,8 +1,10 @@
-import React, {useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import PageIntroduction from '../../components/PageIntroduction'
-import data from '../../data/data.json'
 import Card from '../../components/Cart/Card'        
 import { useProduct } from '../../stores/productSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteItem } from '../../stores/reducers/cartSlice'
+import { applyItem } from '../../stores/reducers/MyServiceSlice';
 
 function Cart() {
   // stores : productSlice.js -> 데이터
@@ -10,38 +12,29 @@ function Cart() {
   // useEffect(() => {
   //   console.log()
   // }, [])
+  const item = useSelector(state => state.cartList)
 
-  let cartList = []
+  console.log(item)
+  let dispatch = useDispatch();
 
-  for(let i = 0; i < 3; i++) {
-
-    cartList.push(productList[i])
-  }
-  
   return (
     <div className="cart-container">
       <PageIntroduction pagename="장바구니"/>
       {
-        cartList.map( (product, index) =>{
+        item.map( (product, index) =>{
           return (<Card key={index}
             bankName={product.kor_co_nm}
             productName={product.fin_prdt_nm}
             productDescription={product.mtrt_int}
             savingsLimit={product.max_limit}
+            // onBookMarkClick={} 북마크 리덕스로 state 구현 완료시 넣기
+            onDeleteClick={()=> {dispatch(deleteItem(item[index].id))}}
+            onApplyClick={()=> {dispatch(applyItem(item[index].id))}}
           />)
         })
       } 
     </div>
   )
-
-  // return (
-  //   <div className="cart-container">
-  //     <PageIntroduction pagename="장바구니"/>
-  //     <div>
-  //       {productList.map( i => { return (<div key={i.id}> 상품명: {i.fin_prdt_nm} / 은행명: {i.kor_co_nm} </div>)})}
-  //     </div>
-  //   </div>
-  // )
 }
 
 export default Cart

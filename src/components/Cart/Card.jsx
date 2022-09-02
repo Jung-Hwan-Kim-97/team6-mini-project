@@ -17,7 +17,7 @@ const Card = (props) => {
         <div className="savingsLimit item">{props.savingsLimit}</div>
         <BookmarkButton />
         <ApplyButton />
-        <CloseButton />
+        <CloseButton onDeleteClick={props.onDeleteClick} />
       </div>
     </StyledCard>
   )
