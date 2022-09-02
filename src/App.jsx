@@ -10,6 +10,8 @@ import Login from './pages/Login'
 // pages
 import Home from './pages/Home/Home'
 import ProductList from './pages/ProductList/ProductList'
+import Cart from './pages/Cart/Cart';
+
 import ProductDetail from './pages/ProductList/ProductDetail/ProductDetail'
 import PurchasedList from './pages/ProductList/PurchaseList/PurchasedList'
 import SerchedProductList from './pages/ProductList/SerchedProduct/SerchedProductList'
@@ -32,6 +34,7 @@ const App = () => {
         <Route path="/purchaseList" element={<PurchasedList />} />
         <Route path="/serchedproduct" element={<SerchedProductList />} />
         <Route path="/favorite" element={<Favorite />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
