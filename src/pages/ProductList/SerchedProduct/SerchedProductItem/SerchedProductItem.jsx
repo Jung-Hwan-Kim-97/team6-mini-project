@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import FavoriteButton from '../../../../components/FavoriteButton'
 import {
   useProduct,
   modalHandler,
@@ -39,6 +40,7 @@ const SerchedProductItem = ({ item }) => {
         >
           상품신청
         </button>
+        <FavoriteButton item={item} />
       </div>
     </StyledSerchedProductItem>
   )
