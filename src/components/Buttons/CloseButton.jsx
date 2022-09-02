@@ -21,7 +21,6 @@ const CloseButton = (props) => {
 export default CloseButton
 
 const StyledBotton = styled.div`
-  background-color: pink;
   p {
     text-indent: -9999px;
   }
@@ -33,6 +32,6 @@ const StyledBotton = styled.div`
     cursor: pointer;
   }
   .btn_close{
-    padding: 0;
+    padding: 8px;
   }
 `

@@ -1,21 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FaHeart } from 'react-icons/fa'
+import { FaShoppingCart } from 'react-icons/fa'
 
-function BookmarkButton() {
+const ApplyButton = () => {
   return (
     <StyledBotton>
-      <div className='bookmark-button-container'>
-        <p>즐겨찾기</p>
-        <button className="btn btn_favorite">
-            <FaHeart size="24" />
+      <div className='cart-button-container'>
+        <p>장바구니에 담기</p>
+        <button className="btn btn_cart">
+            <FaShoppingCart size="24" />
         </button>
       </div>
     </StyledBotton>
   )
 }
 
-export default BookmarkButton
+export default ApplyButton
 
 const StyledBotton = styled.div`
   p {
@@ -24,10 +24,10 @@ const StyledBotton = styled.div`
   .btn {
     outline: none;
     border: none;
-    color: ${({ theme }) => theme.palette.orange};
+    color: ${({ theme }) => theme.palette.skyBlue};
     cursor: pointer;
   }
-  .btn_favorite {
+  .btn_apply {
     background-color: transparent;
     padding: 6px;
   }

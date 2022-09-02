@@ -12,12 +12,16 @@ const Card = (props) => {
         <div className="bankName item">{props.bankName}</div>
         <div className="productName item">{props.productName}</div>
         <div className="productDescription item">{props.productDescription}</div>
-        <p>저축한도 (월)</p>
-        <p className='moneyUnit'>₩</p>
-        <div className="savingsLimit item">{props.savingsLimit}</div>
-        <BookmarkButton />
-        <ApplyButton />
-        <CloseButton onDeleteClick={props.onDeleteClick} />
+        <div className="item"><p>저축한도 (월)</p></div>
+        <div className="savingsLimit item">
+          <p className='moneyUnit'>₩</p>
+          {props.savingsLimit}
+        </div>
+        <div className='btn-wrap'>
+          <BookmarkButton />
+          <ApplyButton />
+          <CloseButton onDeleteClick={props.onDeleteClick} />
+        </div>
       </div>
     </StyledCard>
   )
@@ -27,11 +31,16 @@ export default Card
 
 const StyledCard = styled.div`
   .card-container {
-    // display: grid;
+    display: grid;
     min-width: 300px;
     max-width: 600px;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "bankName bankName btnSet"
+      "productName productName productName"
+      "productDescription productDescription savingsLimit"
+      "productDescription productDescription savingsLimit";
     background-color: ${({ theme }) => theme.palette.lightBlue};
     box-sizing: border-box;
     margin: 10px auto;
@@ -50,25 +59,25 @@ const StyledCard = styled.div`
     padding: 10px;
     flex-shrink: 0;
     white-space:nowrap;
+    font-size: 1em;
   }
   .bankName {
-    grid-column: span 3;
-    font-size: 1.3em;
+    grid-area: bankName;
+  }
+  .btn-wrap {
+    grid-area: btnSet;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: end;
+    align-items: center;
+    justify-items: center;
   }
   .productName {
-    grid-column: span 2;
-    grid-row: 2;
-    font-size: 1.1em;
+    grid-area: productName;
+    color: ${({ theme }) => theme.palette.cobaltBlue}};
   }
-  .myAccount {
-    grid-column: 3 / 5 ;
-    grid-row: 2;
-    font-size: 1em;
-    justify-content: end;
-  }
-  .balance{
-    grid-row: 3;
-    grid-column: span 4;
-    font-size: 1em;
+  .productDescription {
+    grid-area: productDescription;
+    white-space: normal;
   }
 `
