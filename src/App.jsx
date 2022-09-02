@@ -14,6 +14,7 @@ import ProductDetail from './pages/ProductList/ProductDetail/ProductDetail'
 import PurchasedList from './pages/ProductList/PurchaseList/PurchasedList'
 import SerchedProductList from './pages/ProductList/SerchedProduct/SerchedProductList'
 import Favorite from './pages/Favorite'
+import NotFound from './pages/NotFound'
 
 const App = () => {
   const { onModal, productList } = useProduct()
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/purchaseList" element={<PurchasedList />} />
         <Route path="/serchedproduct" element={<SerchedProductList />} />
         <Route path="/favorite" element={<Favorite />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>
