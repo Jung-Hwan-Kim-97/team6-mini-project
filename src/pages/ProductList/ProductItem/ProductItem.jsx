@@ -1,30 +1,48 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+
 import styled from 'styled-components'
 import FavoriteButton from '../../../components/FavoriteButton'
 //react-icons
 
 //productSlice
-import { useProduct } from '../../../stores/productSlice'
-import { modalHandler } from '../../../stores/productSlice'
+import {
+  useProduct,
+  modalHandler,
+  purchaseRequest,
+  isVisibleHandler,
+} from '../../../stores/productSlice'
 //react-router-dom
 import { useNavigate } from 'react-router-dom'
 
 const ProductItem = ({ item }) => {
-  const { dispatch } = useProduct();
-  const navigate = useNavigate();
+  const { dispatch, purchasedList } = useProduct()
+  const navigate = useNavigate()
+
+  const purchaseRequestHandler = item => {
+    if (purchasedList.includes(item)) {
+      alert('이미 구매하신 상품입니다!')
+      return
+    }
+    dispatch(purchaseRequest(item))
+    dispatch(isVisibleHandler())
+    dispatch(modalHandler())
+  }
 
   return (
     <StyledProductItem>
       <div className="item-container">
         <div className="left-info">
           <h2>{item.fin_prdt_nm}</h2>
-          <p>상품 가격: {item.max_limit}원</p>
+          <p>
+            저축 한도:{' '}
+            {item.max_limit === null ? '한도 없음' : `${item.max_limit}원`}
+          </p>
         </div>
         <div className="actions">
           <button
             className="btn"
             onClick={() => {
-              dispatch(modalHandler())
+              purchaseRequestHandler(item)
             }}
           >
             신청하기
@@ -50,7 +68,6 @@ const StyledProductItem = styled.div`
   margin: 20px;
   box-sizing: border-box;
   padding: 10px 0;
-  box-sizing: border-box;
   .item-container {
     display: flex;
     justify-content: space-between;

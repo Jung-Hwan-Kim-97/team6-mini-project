@@ -1,36 +1,46 @@
 import React from 'react'
-import styled from 'styled-components';
+import styled from 'styled-components'
 import { FaShoppingCart } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
-import { useFavorite } from '../stores/favoriteSlice';
-import { modalHandler } from '../stores/productSlice';
-import FavoriteButton from './FavoriteButton';
+import { useFavorite } from '../stores/favoriteSlice'
+import {
+  isVisibleHandler,
+  modalHandler,
+  purchaseRequest,
+} from '../stores/productSlice'
+
+import FavoriteButton from './FavoriteButton'
 
 function FavoriteItem({ item }) {
-  const { dispatch } = useFavorite();
+  const { dispatch } = useFavorite()
+
   const navigate = useNavigate()
 
   return (
     <StyledFavoriteItem>
       <article className="item-container">
         <div className="item-info">
-          <h3 className='bank-name'>{item.kor_co_nm}</h3>
-          <h2 className='product-title'>{item.fin_prdt_nm}</h2>
-          <pre className='product-content'>{item.mtrt_int}</pre>
-          <p className='product-price'>상품 가격: {(item.max_limit).toLocaleString()}원</p>
+          <h3 className="bank-name">{item.kor_co_nm}</h3>
+          <h2 className="product-title">{item.fin_prdt_nm}</h2>
+          <pre className="product-content">{item.mtrt_int}</pre>
+          <p className="product-price">
+            상품 가격: {item.max_limit.toLocaleString()}원
+          </p>
         </div>
         <div className="button-box">
-          <div className='action-buttons'>
+          <div className="action-buttons">
             <button className="btn shopping-cart">
-              <FaShoppingCart color='#80BFDE' />
+              <FaShoppingCart color="#80BFDE" />
             </button>
             <FavoriteButton item={item} />
           </div>
-          <div className='origin-buttons'>
+          <div className="origin-buttons">
             <button
               className="btn"
               onClick={() => {
+                dispatch(isVisibleHandler())
                 dispatch(modalHandler())
+                dispatch(purchaseRequest(item))
               }}
             >
               신청하기
@@ -51,8 +61,8 @@ function FavoriteItem({ item }) {
 }
 
 const StyledFavoriteItem = styled.section`
-  background: #FBFDFF;
-  border: 1px solid #2D71C4;
+  background: #fbfdff;
+  border: 1px solid #2d71c4;
   border-radius: 20px;
   margin: 20px;
   padding: 20px 20px 42px;
@@ -70,7 +80,7 @@ const StyledFavoriteItem = styled.section`
       .product-title {
         font-size: 22px;
         font-weight: 700;
-        color: #2D71C4;
+        color: #2d71c4;
         margin: 10px 0;
         word-break: keep-all;
       }

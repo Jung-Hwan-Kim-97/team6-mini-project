@@ -17,10 +17,10 @@ const ProductNotice = () => {
       <section className="notice-body">
         {noticeData.map(i => {
           return (
-            <ol className="test1" key={i.id}>
-              <li className="test_3">
+            <ol className="notice-body-container" key={i.id}>
+              <li className="notice-body-title">
                 {i.title}
-                <ul className="test2">
+                <ul className="notice-content-container">
                   {Object.keys(i.contents).length < 2 ? (
                     <li>
                       <p>{i.contents.content1}</p>
@@ -61,10 +61,10 @@ const StyledProductNotice = styled.div`
     }
   }
   .notice-body {
-    .test1 {
-      .test_3 {
+    .notice-body-container {
+      .notice-body-title {
         margin: 12px 0;
-        .test2 {
+        .notice-content-container {
           li {
             margin-left: 30px;
             p {
