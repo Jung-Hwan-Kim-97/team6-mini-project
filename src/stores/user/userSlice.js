@@ -8,6 +8,8 @@ const initialState = {
     status: '',
   },
   loading: false,
+  isLogin: false,
+  userName: '김패캠'
 }
 
 export const login = createAsyncThunk(
