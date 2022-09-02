@@ -1,7 +1,6 @@
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { BsCart3 } from 'react-icons/bs'
 import ProductNotice from './ProductNotice'
 import {
   modalHandler,
@@ -10,7 +9,8 @@ import {
   isVisibleHandler,
 } from '~/stores/productSlice'
 import FavoriteButton from '../../../components/FavoriteButton'
-
+import { addItem } from '../../../stores/reducers/cartSlice'
+import CartButton from '../../../components/Buttons/CartButton'
 const ProductDetail = () => {
   const { state } = useLocation()
   const navigate = useNavigate()
@@ -36,7 +36,8 @@ const ProductDetail = () => {
       <section className="product-info">
         <div className="product-icons">
           <FavoriteButton item={state} />
-          <BsCart3 size="30" color="#2D71C4" />
+          <CartButton onAddCart={dispatch(addItem(state))}/>
+
         </div>
 
         <div className="detail-info">

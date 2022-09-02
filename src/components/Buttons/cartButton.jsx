@@ -1,23 +1,31 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FaShoppingCart } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
+import { BsCart3 } from 'react-icons/bs'
 
-const ApplyButton = () => {
+const CartButton = (props) => {
+  const navigate = useNavigate()
+  console.log(props, "여기")
+
+  const navigateCart = props =>{
+    props.onAddCart
+    navigate('/cart')
+  }
   return (
-    <StyledBotton>
+    <StyledButton>
       <div className='cart-button-container'>
-        <p>장바구니에 담기</p>
-        <button className="btn btn_cart">
-            <FaShoppingCart size="32" />
+        <button className="btn btn_cart"
+        onClick={navigateCart} >
+          <BsCart3 size="30" color="#2D71C4" />
         </button>
       </div>
-    </StyledBotton>
+    </StyledButton>
   )
 }
 
-export default ApplyButton
+export default CartButton
 
-const StyledBotton = styled.div`
+const StyledButton = styled.div`
   p {
     text-indent: -9999px;
   }
