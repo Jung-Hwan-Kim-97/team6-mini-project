@@ -19,10 +19,10 @@ const ProductItem = ({ item }) => {
   const navigate = useNavigate()
 
   const purchaseRequestHandler = item => {
-    if (purchasedList.includes(item)) {
-      alert('이미 구매하신 상품입니다!')
-      return
-    }
+    // if (purchasedList.includes(item)) {
+    //   alert('이미 구매하신 상품입니다!')
+    //   return
+    // }
     dispatch(purchaseRequest(item))
     dispatch(isVisibleHandler())
     dispatch(modalHandler())

@@ -12,6 +12,7 @@ import ProductDetail from './pages/ProductList/ProductDetail/ProductDetail'
 import PurchasedList from './pages/ProductList/PurchaseList/PurchasedList'
 import SerchedProductList from './pages/ProductList/SerchedProduct/SerchedProductList'
 import Favorite from './pages/Favorite'
+import styled from 'styled-components'
 
 const App = () => {
   const { onModal, productList } = useProduct()

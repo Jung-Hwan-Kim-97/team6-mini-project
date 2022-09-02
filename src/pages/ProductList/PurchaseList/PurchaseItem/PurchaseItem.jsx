@@ -19,6 +19,7 @@ const PurchaseItem = ({ item }) => {
         <li>
           <div>
             <button
+              className="btn"
               onClick={() => {
                 navigate(`/productlist/${item.id}`, { state: item })
               }}
@@ -26,6 +27,7 @@ const PurchaseItem = ({ item }) => {
               상세보기
             </button>
             <button
+              className="btn"
               onClick={() => {
                 dispatch(removePurchaseItem(item))
               }}
@@ -35,7 +37,7 @@ const PurchaseItem = ({ item }) => {
           </div>
         </li>
       </ul>
-      <div className="money">
+      <div className="icon">
         <FaMoneyCheckAlt color="#000080" size="150" />
       </div>
     </StyledPurchaseItem>
@@ -54,11 +56,26 @@ const StyledPurchaseItem = styled.div`
     padding: 10px;
     li {
       margin: 10px 0 10px 5px;
+      div {
+        .btn {
+          outline: none;
+          padding: 3px 15px;
+          box-sizing: border-box;
+          border: none;
+          background-color: #2d71c4;
+          color: #fff;
+          &:first-child {
+            margin-right: 10px;
+          }
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+          }
+        }
+      }
     }
   }
-  .money {
+  .icon {
     padding: 10px 35px;
-    color: red;
     img {
       background-color: #808080;
       width: 150px;

@@ -18,10 +18,10 @@ const ProductDetail = () => {
   console.log(state)
 
   const purchaseRequestHandler = state => {
-    if (purchasedList.includes(state)) {
-      alert('이미 구매하신 상품입니다!')
-      return
-    }
+    // if (purchasedList.includes(state)) {
+    //   alert('이미 구매하신 상품입니다!')
+    //   return
+    // }
     dispatch(purchaseRequest(state))
     dispatch(isVisibleHandler())
     dispatch(modalHandler())
