@@ -8,7 +8,7 @@ function BookmarkButton() {
       <div className='bookmark-button-container'>
         <p>즐겨찾기</p>
         <button className="btn btn_favorite">
-            <FaHeart size="24" />
+            <FaHeart size="28" />
         </button>
       </div>
     </StyledBotton>
@@ -22,13 +22,11 @@ const StyledBotton = styled.div`
     text-indent: -9999px;
   }
   .btn {
+    background-color: transparent;
     outline: none;
     border: none;
+    padding: 0;
     color: ${({ theme }) => theme.palette.orange};
     cursor: pointer;
-  }
-  .btn_favorite {
-    background-color: transparent;
-    padding: 6px;
   }
 `

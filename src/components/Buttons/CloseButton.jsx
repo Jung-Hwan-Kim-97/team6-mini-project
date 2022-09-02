@@ -9,7 +9,7 @@ const CloseButton = (props) => {
       <div className='close-button-container'>
         <p>삭제하기</p>
         <button className="btn btn_close" onClick={props.onDeleteClick}>
-            <BsXLg size="22" />
+            <BsXLg size="28" />
         </button>
       </div>
       {console.log(cartList.getInitialState)}
@@ -28,10 +28,8 @@ const StyledBotton = styled.div`
     background-color: transparent;
     outline: none;
     border: none;
+    padding: 0;
     color: ${({ theme }) => theme.palette.lightGray};
     cursor: pointer;
-  }
-  .btn_close{
-    padding: 8px;
   }
 `

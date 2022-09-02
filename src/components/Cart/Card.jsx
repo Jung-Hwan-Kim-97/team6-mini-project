@@ -12,13 +12,13 @@ const Card = (props) => {
         <div className="bankName item">{props.bankName}</div>
         <div className="productName item">{props.productName}</div>
         <div className="productDescription item">{props.productDescription}</div>
-        <div className="item"><p>저축한도 (월)</p></div>
-        <div className="savingsLimit item">
+        <div className="moneyBox">
+          <p className="moneyBoxText">저축한도 (월)</p>
           <p className='moneyUnit'>₩</p>
-          {props.savingsLimit}
+          <div className="savingsLimit item">{props.savingsLimit}</div>
         </div>
         <div className='btn-wrap'>
-          <BookmarkButton />
+          <BookmarkButton onBookmarkClick={props.onBookmarkClick}/>
           <ApplyButton />
           <CloseButton onDeleteClick={props.onDeleteClick} />
         </div>
@@ -31,26 +31,24 @@ export default Card
 
 const StyledCard = styled.div`
   .card-container {
-    display: grid;
     min-width: 300px;
     max-width: 600px;
-    grid-template-rows: repeat(4, 1fr);
+    display: grid;
+    grid-template-rows: 50px 30px 1fr 1fr;
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas:
       "bankName bankName btnSet"
       "productName productName productName"
       "productDescription productDescription savingsLimit"
-      "productDescription productDescription savingsLimit";
+      "productDescription productDescription .";
     background-color: ${({ theme }) => theme.palette.lightBlue};
     box-sizing: border-box;
-    margin: 10px auto;
-    padding: 20px;
     border-radius: 0.8rem;
+    margin: 10px auto;
+    padding: 10px 20px;
     border: 1px solid ${({ theme }) => theme.palette.cobaltBlue};
     color: ${({ theme }) => theme.palette.fontColor};
-  }
-  .moneyUnit {
-    font-size: 1.5em;
+    line-height: 1;
   }
   .item{
     display: flex;
@@ -63,21 +61,51 @@ const StyledCard = styled.div`
   }
   .bankName {
     grid-area: bankName;
+    font-size: 1.5em;
   }
   .btn-wrap {
     grid-area: btnSet;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    justify-content: end;
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 0.5em;
+    justify-self: end;
     align-items: center;
     justify-items: center;
+    margin-bottom: 20px;
   }
   .productName {
     grid-area: productName;
+    font-size: 1.8em;
     color: ${({ theme }) => theme.palette.cobaltBlue}};
+  }
+  .moneyBox {
+    grid-area: savingsLimit;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-row: repeat(2, 1fr);
+    align-items: center;
+    justify-content: center;
+    .moneyBoxText {
+      grid-column: span 3;
+      font-size: 16px;
+      justify-self: center;
+    }
+    .moneyUnit{
+      font-size: 24px;
+      padding-right: 4px;
+      justify-self: end;
+    }
+    .savingsLimit{
+      font-size: 24px;
+      grid-column: span 2;
+      justify-self: start;
+      padding: 0;
+      marign: 0;
+    }
   }
   .productDescription {
     grid-area: productDescription;
     white-space: normal;
+    line-height: 1.3;
   }
 `

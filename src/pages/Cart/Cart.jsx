@@ -5,6 +5,7 @@ import { useProduct } from '../../stores/productSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteItem } from '../../stores/reducers/cartSlice'
 import { applyItem } from '../../stores/reducers/MyServiceSlice';
+import { addFavorite } from '../../stores/favoriteSlice';
 
 function Cart() {
   // stores : productSlice.js -> 데이터

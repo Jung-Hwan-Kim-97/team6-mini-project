@@ -8,7 +8,7 @@ const ApplyButton = () => {
       <div className='cart-button-container'>
         <p>장바구니에 담기</p>
         <button className="btn btn_cart">
-            <FaShoppingCart size="24" />
+            <FaShoppingCart size="32" />
         </button>
       </div>
     </StyledBotton>
@@ -26,9 +26,7 @@ const StyledBotton = styled.div`
     border: none;
     color: ${({ theme }) => theme.palette.skyBlue};
     cursor: pointer;
-  }
-  .btn_apply {
     background-color: transparent;
-    padding: 6px;
+    padding: 0;
   }
 `

@@ -8,7 +8,7 @@ const ApplyButton = () => {
       <div className='apply-button-container'>
         <p>신청하기</p>
         <button className="btn btn_apply">
-            <FaClipboardCheck size="26" />
+            <FaClipboardCheck size="32" />
         </button>
       </div>
     </StyledBotton>
@@ -22,13 +22,11 @@ const StyledBotton = styled.div`
     text-indent: -9999px;
   }
   .btn {
+    background-color: transparent;
     outline: none;
     border: none;
+    padding: 0;
     color: ${({ theme }) => theme.palette.cobaltBlue};
     cursor: pointer;
-  }
-  .btn_apply {
-    background-color: transparent;
-    padding: 6px;
   }
 `
