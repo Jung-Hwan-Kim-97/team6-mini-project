@@ -1,7 +1,7 @@
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { BsFillSuitHeartFill, BsCart3 } from 'react-icons/bs'
+import { BsCart3 } from 'react-icons/bs'
 import ProductNotice from './ProductNotice'
 import {
   modalHandler,
@@ -9,6 +9,7 @@ import {
   purchaseRequest,
   isVisibleHandler,
 } from '~/stores/productSlice'
+import FavoriteButton from '../../../components/FavoriteButton'
 
 const ProductDetail = () => {
   const { state } = useLocation()
@@ -34,12 +35,8 @@ const ProductDetail = () => {
 
       <section className="product-info">
         <div className="product-icons">
-          <button className="icon">
-            <BsFillSuitHeartFill size="30" color="#2D71C4" />
-          </button>
-          <button className="icon">
-            <BsCart3 size="30" color="#2D71C4" />
-          </button>
+          <FavoriteButton item={state} />
+          <BsCart3 size="30" color="#2D71C4" />
         </div>
 
         <div className="detail-info">
@@ -47,7 +44,12 @@ const ProductDetail = () => {
             <ul>
               <li>은행명: {state.kor_co_nm}</li>
               <li>상품명: {state.fin_prdt_nm}</li>
-              <li>저축한도: {state.max_limit}원</li>
+              <li>
+                저축한도:
+                {state.max_limit === null
+                  ? '한도 없음'
+                  : `${state.max_limit}원`}
+              </li>
               <li>가입대상: {state.join_member}</li>
               <li>가입경로: {state.join_way}</li>
               <li>가입기간: {state.etc_note}</li>
@@ -107,14 +109,8 @@ const StyledProductDetail = styled.div`
     .product-icons {
       text-align: end;
       margin-right: 15px;
-
-      .icon {
-        outline: none;
-        border: none;
-        background: transparent;
-        margin-top: 15px;
-        margin-right: 5px;
-      }
+      padding-top: 20px;
+      box-sizing: border-box;
     }
     .detail-info {
       display: flex;

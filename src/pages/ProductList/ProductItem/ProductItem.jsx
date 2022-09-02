@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 
 import styled from 'styled-components'
+import FavoriteButton from '../../../components/FavoriteButton'
 //react-icons
-import { BsFillSuitHeartFill } from 'react-icons/bs'
+
 //productSlice
 import {
   useProduct,
@@ -12,8 +13,9 @@ import {
 } from '../../../stores/productSlice'
 //react-router-dom
 import { useNavigate } from 'react-router-dom'
+
 const ProductItem = ({ item }) => {
-  const { dispatch, purchasedList, purchaseItem } = useProduct()
+  const { dispatch, purchasedList } = useProduct()
   const navigate = useNavigate()
 
   const purchaseRequestHandler = item => {
@@ -21,10 +23,6 @@ const ProductItem = ({ item }) => {
       alert('이미 구매하신 상품입니다!')
       return
     }
-    // {
-    //   ...item,
-    //   purchaseTime: dayjs().format('YYYY년 MM월 DD일 HH시 mm분'),
-    // }
     dispatch(purchaseRequest(item))
     dispatch(isVisibleHandler())
     dispatch(modalHandler())
@@ -35,7 +33,10 @@ const ProductItem = ({ item }) => {
       <div className="item-container">
         <div className="left-info">
           <h2>{item.fin_prdt_nm}</h2>
-          <p>상품 가격: {item.max_limit}원</p>
+          <p>
+            저축 한도:{' '}
+            {item.max_limit === null ? '한도 없음' : `${item.max_limit}원`}
+          </p>
         </div>
         <div className="actions">
           <button
@@ -54,9 +55,7 @@ const ProductItem = ({ item }) => {
           >
             상세보기
           </button>
-          <button className="btn btn_favorite">
-            <BsFillSuitHeartFill color="80BFDE" size="22" />
-          </button>
+          <FavoriteButton item={item} />
         </div>
       </div>
     </StyledProductItem>
