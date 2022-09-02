@@ -2,21 +2,47 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import logo from '../assets/logo.png'
 import { BiSearchAlt } from 'react-icons/bi'
-
+import { useProduct, searchedProduct } from '../stores/productSlice'
+import { useNavigate } from 'react-router-dom'
 const Header = () => {
   const isLogin = useState(false)
+  const [bankName, setBankName] = useState('')
+
+  const navigate = useNavigate()
+  const { dispatch, searchedItemList } = useProduct()
+
+  const getBankNameHandler = e => {
+    setBankName(e.target.value)
+  }
+
+  const formHandler = e => {
+    e.preventDefault()
+    dispatch(searchedProduct({ bankName }))
+    navigate('/serchedproduct')
+    setBankName('')
+  }
 
   return (
     <StyledHeader>
-      <div className="logo">
+      <div
+        className="logo"
+        onClick={() => {
+          navigate('/')
+        }}
+      >
         <img src={logo} alt="logo-image" />
       </div>
-      <div className="search-bar">
-        <input type="text" />
-        <span className="search-icon">
-          <BiSearchAlt size="22" />
-        </span>
-      </div>
+      <form className="search-bar" onSubmit={formHandler}>
+        <input
+          type="text"
+          onChange={getBankNameHandler}
+          value={bankName}
+          placeholder="조회하실 은행을 입력 해 주세요"
+        />
+        <button className="search-icon">
+          <BiSearchAlt size="18" />
+        </button>
+      </form>
       <div className="actions">
         <button className="btn">로그인</button>
         <button className="btn">회원가입</button>
@@ -34,6 +60,10 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   .logo {
     margin-left: 40px;
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
     img {
       height: 64px;
     }
@@ -54,6 +84,8 @@ const StyledHeader = styled.div`
     .search-icon {
       position: absolute;
       right: 13px;
+      background-color: transparent;
+      border: none;
       &:hover {
         cursor: pointer;
         background-color: rgba(0, 0, 0, 0.3);
