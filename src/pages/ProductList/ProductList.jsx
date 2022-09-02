@@ -1,15 +1,26 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useProduct } from '~/stores/productSlice'
+
+import ProductItem from './ProductItem/ProductItem'
 
 const ProductList = () => {
+  const { productList } = useProduct()
   return (
     <StyledProductList>
       <section className="pageTitle">
         <h1>상품안내</h1>
       </section>
+
       <section className="actions">
         <button className="btn">예금</button>
         <button className="btn">적금</button>
+      </section>
+
+      <section className="container">
+        {productList.map(item => {
+          return <ProductItem key={item.id} item={item} />
+        })}
       </section>
     </StyledProductList>
   )
@@ -18,11 +29,13 @@ const ProductList = () => {
 const StyledProductList = styled.div`
   margin: auto;
   width: 1320px;
-  /* border: 1px solid red; */
   height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   .pageTitle {
-    /* background-color: red; */
+    width: 100%;
     margin: 40px 0 30px 0;
     border-bottom: 2px solid #808080;
     box-sizing: border-box;
@@ -33,6 +46,21 @@ const StyledProductList = styled.div`
   }
   .actions {
     text-align: center;
+
+    .btn {
+      outline: none;
+      border: none;
+      padding: 5px 40px;
+      margin: 10px;
+      background-color: ${({ theme }) => theme.palette.cobaltBlue};
+      color: #fff;
+    }
+  }
+  .container {
+    width: 60%;
+    height: 450px;
+    overflow-y: auto;
+    margin: 30px;
   }
 `
 
