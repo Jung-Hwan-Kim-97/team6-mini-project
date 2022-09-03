@@ -40,8 +40,13 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUserInfo(state, { payload }) {
-      state.profile = payload
       state.isLogin = true
+      state.profile = payload
+      localStorage.setItem('userInfo', JSON.stringify(payload))
+    },
+    logOut(state, { payload }) {
+      state.isLogin = false
+      localStorage.removeItem('userInfo')
     },
   },
   extraReducers: builder => {
@@ -61,4 +66,4 @@ const userSlice = createSlice({
 
 export default userSlice.reducer
 
-export const { setUserInfo } = userSlice.actions
+export const { setUserInfo, logOut } = userSlice.actions

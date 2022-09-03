@@ -1,0 +1,35 @@
+{
+  "result": { 
+    "members" : [
+      {
+        "id": "1",
+        "myAccountList": [
+          {
+            "bankName": "우리은행",
+            "accountNumber": "123812-01-23123"
+          },
+          {
+            "bankName": "국민은행",
+            "accountNumber": "24125-01-23123"
+          }
+        ],
+        "ProductList": [
+          {
+            "ProducName":  "우리스마트폰적금",
+            "expiryDate": "201609201049",
+            "savingLimit": 300000,
+            "interestRate": 1.21
+          }
+        ],
+        "AppliedList": [
+          {
+            "ProducName":  "BNK희망가꾸기적금",
+            "expiryDate": "201609201338",
+            "savingLimit": 300000,
+            "interestRate": 1.31
+          }
+        ]
+      }
+    ]
+  }
+}

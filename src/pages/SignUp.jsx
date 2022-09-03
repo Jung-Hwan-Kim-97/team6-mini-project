@@ -8,13 +8,11 @@ import {
   JOB_ARR,
 } from '~/utils/constants'
 import Button from '~/components/user/Button'
-import Avatar from '~/components/user/Avatar'
-import { useState, useEffect, useMemo } from 'react'
 import { signUp } from '~/stores/user/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
 const Form = styled.form`
-  margin: 0 auto;
+  margin: 50px auto;
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -68,8 +66,7 @@ const SelectBox = styled.div`
 `
 function SignUp() {
   const dispatch = useDispatch()
-  const userState = useSelector(state => state.user)
-  const { register, handleSubmit, formState, watch, getValues } = useForm({
+  const { register, handleSubmit, formState, getValues } = useForm({
     mode: 'onChange',
   })
   const onValid = form => {

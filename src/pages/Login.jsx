@@ -47,7 +47,7 @@ function Login() {
     if (form.email !== 'test123@naver.com' || form.password !== '12341234')
       return
     dispatch(
-      setUserInfo({ age: 20, username: '김패캠', phoneNumber: '01012341234' }),
+      setUserInfo({ age: 20, userName: '김패캠', phoneNumber: '01012341234' }),
     )
     alert('로그인 성공!')
     navigate('/')

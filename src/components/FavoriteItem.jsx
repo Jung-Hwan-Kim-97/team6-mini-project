@@ -68,6 +68,7 @@ const StyledFavoriteItem = styled.section`
   padding: 20px 20px 42px;
   width: 60%;
   box-sizing: border-box;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
   .item-container {
     display: flex;
     justify-content: space-between;
