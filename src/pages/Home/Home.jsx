@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from 'react'
 import styled from 'styled-components'
 import { useProduct } from '../../stores/productSlice'
+import { useSelector } from 'react-redux'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import HomeProduct from '../../components/HomeProduct'
@@ -10,10 +11,8 @@ import HomeFavorite from '../../components/HomeFavorite'
 
 const Home = () => {
   const { productList } = useProduct()
-
-  // 로그인 조건 적용 필요
-  const isLogin = true
-  const user = '김패캠'
+  const isLogin = useSelector(state => state.user.isLogin)
+  const userName = useSelector(state => state.user.userName)
 
   const init = useCallback(() => {
     AOS.init({ duration: 2000 })
@@ -21,7 +20,7 @@ const Home = () => {
 
   useEffect(() => {
     init()
-  }, [isLogin, user, productList])
+  }, [productList, userName, isLogin])
 
   const html = (
     <StyledWrapper>
@@ -29,7 +28,7 @@ const Home = () => {
       {isLogin ? (
         <StyledLoginArea>
           <div>
-            <p>어서오세요, {user} 님! 😊</p> <HomeFavorite />
+            <p>어서오세요, {userName} 님! 😊</p> <HomeFavorite />
           </div>
           <hr />
         </StyledLoginArea>
