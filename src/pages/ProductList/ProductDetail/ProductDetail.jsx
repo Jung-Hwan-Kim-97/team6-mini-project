@@ -7,7 +7,6 @@ import baseLogo from '~/assets/logo2.png'
 //react 관련 데이터
 import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { BsCart3 } from 'react-icons/bs'
 import ProductNotice from './ProductNotice'
 import {
   modalHandler,
@@ -16,12 +15,13 @@ import {
   isVisibleHandler,
 } from '~/stores/productSlice'
 import FavoriteButton from '../../../components/FavoriteButton'
-
+import CartButton from '../../../components/Buttons/CartButton'
+import { deleteItem } from '../../../stores/reducers/cartSlice'
+import PageIntroduction from '../../../components/PageIntroduction'
 const ProductDetail = () => {
   const { state } = useLocation()
   const navigate = useNavigate()
-  const { dispatch, purchasedList } = useProduct()
-  console.log(state)
+  const { dispatch, purchasedList, purchaseItem } = useProduct()
 
   const purchaseRequestHandler = state => {
     if (purchasedList.some(purchasedItem => purchasedItem.id === state.id)) {
@@ -48,14 +48,12 @@ const ProductDetail = () => {
 
   return (
     <StyledProductDetail>
-      <section className="pageTitle">
-        <h1>상세정보</h1>
-      </section>
+      <PageIntroduction pagename="상세정보" />
 
       <section className="product-info">
         <div className="product-icons">
           <FavoriteButton item={state} />
-          <BsCart3 size="30" color="#2D71C4" />
+          <CartButton item= {state}/>
         </div>
 
         <div className="detail-info">
@@ -95,7 +93,7 @@ const ProductDetail = () => {
         <button
           className="btn"
           onClick={() => {
-            purchaseRequestHandler(state)
+            purchaseRequestHandler()
           }}
         >
           신청하기
@@ -109,63 +107,59 @@ const ProductDetail = () => {
 }
 const StyledProductDetail = styled.div`
   margin: auto;
-  width: 1320px;
-  .pageTitle {
-    width: 100%;
-    margin: 40px 0 30px 0;
-    border-bottom: 2px solid #808080;
-    box-sizing: border-box;
-    h1 {
-      font-size: 25px;
-      margin-bottom: 20px;
-    }
-  }
+  min-width: 350px;
+  max-width: 900px;
   .product-info {
     width: 100%;
-    background: linear-gradient(to bottom right, #5d5ffc, #47e975);
-    height: 350px;
+    background-color: ${({ theme }) => theme.palette.lightBlue};
+    border: 1px solid ${({ theme }) => theme.palette.cobaltBlue};
+    color: ${({ theme }) => theme.palette.fontColor};
+    border-radius: 0.8em;
+    box-sizing: border-box;
+    padding: 16px 20px;
+    display: grid;
 
     .product-icons {
+      width: 66px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       text-align: end;
-      margin-right: 15px;
-      padding-top: 20px;
       box-sizing: border-box;
+      grid-column: 2 / 3;
     }
     .detail-info {
       display: flex;
       justify-content: space-between;
       .left-info {
         ul {
-          color: #fff;
           margin-left: 15px;
           li {
-            margin: 10px 0;
-            p {
-              margin: 5px 0;
-            }
+            line-height: 1.6;
           }
         }
       }
       .right-bg {
+        grid-column: 2 / 3;
+        flex-shrink: 0;
         background-color: #808080;
-        width: 200px;
+        width: 160px;
         height: 200px;
-        margin: 10px 30px;
-        img {
-          width: 200px;
-        }
+        margin-left: 30px;
       }
     }
   }
   .actions {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 20px;
     .btn {
-      margin: 10px;
-      padding: 5px 80px;
+      margin-left: 20px;
+      width: 160px;
+      padding: 12px 0;
       outline: none;
       border: none;
-      background-color: #2d71c4;
+      box-sizing: border-box;
+      border-radius: 0.8em;
+      background-color: ${({ theme }) => theme.palette.cobaltBlue};
       color: #fff;
     }
     .btn_gray {

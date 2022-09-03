@@ -8,7 +8,7 @@ import { createLogger } from 'redux-logger'
 const logger = createLogger()
 
 import cartList from './reducers/cartSlice'
-import MyServiceList from './reducers/MyServiceSlice'
+
 const store = configureStore({
   reducer: {
     test: testSlice,
@@ -16,7 +16,7 @@ const store = configureStore({
     user: userSlice,
     favorite: favoriteSlice,
     cartList: cartList.reducer,
-    MyServiceList: MyServiceList.reducer,
+    cart: cartList
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
 })
