@@ -4,21 +4,23 @@ import ApplyButton from '../Buttons/applyButton'
 import BookmarkButton from '../Buttons/BookmarkButton'
 import CloseButton from '../Buttons/CloseButton'
 
-const Card = (props) => {
-    console.log(CloseButton)
+const Card = props => {
+  console.log(CloseButton)
   return (
     <StyledCard>
-      <div className='card-container'>
+      <div className="card-container">
         <div className="bankName item">{props.bankName}</div>
         <div className="productName item">{props.productName}</div>
-        <div className="productDescription item">{props.productDescription}</div>
+        <div className="productDescription item">
+          {props.productDescription}
+        </div>
         <div className="moneyBox">
           <p className="moneyBoxText">저축한도 (월)</p>
-          <p className='moneyUnit'>₩</p>
+          <p className="moneyUnit">₩</p>
           <div className="savingsLimit item">{props.savingsLimit}</div>
         </div>
-        <div className='btn-wrap'>
-          <BookmarkButton onBookmarkClick={props.onBookmarkClick}/>
+        <div className="btn-wrap">
+          <BookmarkButton onBookmarkClick={props.onBookmarkClick} />
           <ApplyButton />
           <CloseButton onDeleteClick={props.onDeleteClick} />
         </div>
@@ -37,10 +39,10 @@ const StyledCard = styled.div`
     grid-template-rows: 50px 30px 1fr 1fr;
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas:
-      "bankName bankName btnSet"
-      "productName productName productName"
-      "productDescription productDescription savingsLimit"
-      "productDescription productDescription .";
+      'bankName bankName btnSet'
+      'productName productName productName'
+      'productDescription productDescription savingsLimit'
+      'productDescription productDescription .';
     background-color: ${({ theme }) => theme.palette.lightBlue};
     box-sizing: border-box;
     border-radius: 0.8rem;
@@ -50,13 +52,13 @@ const StyledCard = styled.div`
     color: ${({ theme }) => theme.palette.fontColor};
     line-height: 1;
   }
-  .item{
+  .item {
     display: flex;
     position: relative;
     align-items: center;
     padding: 10px;
     flex-shrink: 0;
-    white-space:nowrap;
+    white-space: nowrap;
     font-size: 1em;
   }
   .bankName {
@@ -65,7 +67,7 @@ const StyledCard = styled.div`
   }
   .btn-wrap {
     grid-area: btnSet;
-    display: grid; 
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 0.5em;
     justify-self: end;
@@ -76,13 +78,13 @@ const StyledCard = styled.div`
   .productName {
     grid-area: productName;
     font-size: 1.8em;
-    color: ${({ theme }) => theme.palette.cobaltBlue}};
+    /* color: ${({ theme }) => theme.palette.cobaltBlue}}; */
   }
   .moneyBox {
     grid-area: savingsLimit;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-row: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     align-items: center;
     justify-content: center;
     .moneyBoxText {
@@ -90,17 +92,17 @@ const StyledCard = styled.div`
       font-size: 16px;
       justify-self: center;
     }
-    .moneyUnit{
+    .moneyUnit {
       font-size: 24px;
       padding-right: 4px;
       justify-self: end;
     }
-    .savingsLimit{
+    .savingsLimit {
       font-size: 24px;
       grid-column: span 2;
       justify-self: start;
       padding: 0;
-      marign: 0;
+      margin: 0;
     }
   }
   .productDescription {

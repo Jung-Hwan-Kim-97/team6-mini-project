@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useProduct } from './stores/productSlice'
+import styled from 'styled-components'
 import { Route, Routes } from 'react-router-dom'
 // component
 import Header from './components/Header'
@@ -10,7 +11,7 @@ import Login from './pages/Login'
 // pages
 import Home from './pages/Home/Home'
 import ProductList from './pages/ProductList/ProductList'
-import Cart from './pages/Cart/Cart';
+import Cart from './pages/Cart/Cart'
 
 import ProductDetail from './pages/ProductList/ProductDetail/ProductDetail'
 import PurchasedList from './pages/ProductList/PurchaseList/PurchasedList'
@@ -27,9 +28,9 @@ const App = () => {
       <Header />
       <Routes>
         <Route index element={<Home />} />
-        <Route path="/productlist" element={<ProductList />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/logIn" element={<Login />} />
+        <Route path="/productlist" element={<ProductList />} />
         <Route path="/productlist/:id" element={<ProductDetail />} />
         <Route path="/purchaseList" element={<PurchasedList />} />
         <Route path="/serchedproduct" element={<SerchedProductList />} />

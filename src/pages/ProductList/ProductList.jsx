@@ -52,8 +52,9 @@ const StyledProductList = styled.div`
       border: none;
       padding: 5px 40px;
       margin: 10px;
-      background-color: ${({ theme }) => theme.palette.cobaltBlue};
-      color: #fff;
+      border: 1px solid #2d71c4;
+      color: #2d71c4;
+      background-color: #fff;
     }
   }
   .container {
