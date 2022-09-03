@@ -7,7 +7,7 @@ import 'aos/dist/aos.css'
 import HomeProduct from '../../components/HomeProduct'
 import HomeBanner from '../../components/HomeBanner'
 import HomeNav from '../../components/HomeNav'
-import HomeFavorite from '../../components/HomeFavorite'
+import HomeButton from '../../components/HomeButton'
 
 const Home = () => {
   const { productList } = useProduct()
@@ -25,18 +25,18 @@ const Home = () => {
   const html = (
     <StyledWrapper>
       {/* 로그인 */}
-      {isLogin ? (
-        <StyledLoginArea>
-          <div>
-            <p>어서오세요, {userName} 님! 😊</p> <HomeFavorite />
-          </div>
-          <hr />
-        </StyledLoginArea>
-      ) : (
-        <StyledLoginArea>
-          로그인을 해주세요 <hr />
-        </StyledLoginArea>
-      )}
+      <StyledLoginArea>
+        {isLogin ? (
+          <p>어서오세요, {userName} 님! 😊</p>
+        ) : (
+          <p>로그인을 해주세요</p>
+        )}
+        {/* 관심상품/장바구니 버튼 */}
+        <div>
+          <HomeButton urlPath="/favorite" name="관심상품 🌟" />
+          <HomeButton urlPath="/cart" name="장바구니 👜" />
+        </div>
+      </StyledLoginArea>
 
       {/* HomeBanner */}
       <HomeBanner dataList={productList} />
@@ -107,13 +107,10 @@ const StyledContainer = styled.div`
 `
 
 const StyledLoginArea = styled.div`
-  flex-grow: 1;
   font-size: 21px;
   font-weight: 500;
-
-  div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid green;
 `
