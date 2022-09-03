@@ -56,28 +56,26 @@ const ProductDetail = () => {
           <CartButton item= {state}/>
         </div>
         <div className="detail-info">
-          <div className="left-info">
-            <ul>
-              <li>은행명: {state.kor_co_nm}</li>
-              <li>상품명: {state.fin_prdt_nm}</li>
-              <li>
-                저축한도:
-                {state.max_limit === null
-                  ? '한도 없음'
-                  : `${state.max_limit}원`}
-              </li>
-              <li>가입대상: {state.join_member}</li>
-              <li>가입경로: {state.join_way}</li>
-              <li>가입기간: {state.etc_note}</li>
-              <li>
-                상세 설명: {state.mtrt_int}
-                <p>{state.spcl_cnd}</p>
-              </li>
-            </ul>
-          </div>
-          <div className="right-bg">
-            <img src={imageSeletor()} alt="국민은행" />
-          </div>
+          <ul>
+            <li>은행명: {state.kor_co_nm}</li>
+            <li>상품명: {state.fin_prdt_nm}</li>
+            <li>
+              저축한도:
+              {state.max_limit === null
+                ? '한도 없음'
+                : `${state.max_limit}원`}
+            </li>
+            <li>가입대상: {state.join_member}</li>
+            <li>가입경로: {state.join_way}</li>
+            <li>가입기간: {state.etc_note}</li>
+            <li>
+              상세 설명: {state.mtrt_int}
+              <p>{state.spcl_cnd}</p>
+            </li>
+          </ul>
+        </div>
+        <div className="infoImg">
+          <img src={imageSeletor()} alt="국민은행" />
         </div>
       </section>
       <section className="actions">
