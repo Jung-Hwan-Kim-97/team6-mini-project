@@ -14,13 +14,15 @@ const SerchedProductList = () => {
 
       <section className="actions">
         <button
+          className="btn"
           onClick={() => {
-            navigate('/')
+            navigate('/favorite')
           }}
         >
-          홈으로 이동
+          즐겨찾기
         </button>
         <button
+          className="btn"
           onClick={() => {
             navigate('/productlist')
           }}
@@ -61,14 +63,34 @@ const StyledSerchedProductList = styled.div`
   }
   .actions {
     margin-bottom: 20px;
+    .btn {
+      margin: 0 10px;
+      outline: none;
+      border: 1px solid #2d71c4;
+      color: #2d71c4;
+      background-color: #fff;
+      padding: 5px 15px;
+      box-sizing: border-box;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+      }
+    }
   }
   .purchase-list-container {
     width: 60%;
     height: 450px;
-    border: 1px solid red;
     overflow-y: auto;
     position: relative;
     margin-bottom: 30px;
+    .null-text {
+      position: absolute;
+      top: 150px;
+      left: 220px;
+      font-size: 25px;
+      font-weight: 700;
+      color: #808080;
+    }
   }
 `
 

@@ -10,7 +10,7 @@ import {
 } from '../../../../stores/productSlice'
 const SerchedProductItem = ({ item }) => {
   const navigate = useNavigate()
-  const { dispatch, isVisible } = useProduct()
+  const { dispatch, isVisible, purchasedList } = useProduct()
   return (
     <StyledSerchedProductItem>
       <ul>
@@ -23,6 +23,7 @@ const SerchedProductItem = ({ item }) => {
       </ul>
       <div className="actions">
         <button
+          className="btn-item"
           onClick={() => {
             navigate(`/productlist/${item.id}`, { state: item })
           }}
@@ -30,10 +31,17 @@ const SerchedProductItem = ({ item }) => {
           상세정보
         </button>
         <button
+          className="btn-item"
           onClick={() => {
-            dispatch(purchaseRequest(item))
-            dispatch(isVisibleHandler())
-            dispatch(modalHandler())
+            if (
+              purchasedList.some(purchasedItem => purchasedItem.id === item.id)
+            ) {
+              alert('이미 구매한 상품입니다.')
+            } else {
+              dispatch(purchaseRequest(item))
+              dispatch(isVisibleHandler())
+              dispatch(modalHandler())
+            }
           }}
         >
           상품신청
@@ -52,6 +60,33 @@ const StyledSerchedProductItem = styled.div`
   padding: 10px 0;
   display: flex;
   justify-content: space-between;
+  color: #fff;
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    li {
+      margin: 10px;
+    }
+  }
+  .actions {
+    display: flex;
+    flex-direction: column;
+    .btn-item {
+      outline: none;
+      padding: 3px 15px;
+      box-sizing: border-box;
+      border: none;
+      background-color: #2d71c4;
+      color: #fff;
+      box-sizing: border-box;
+      margin: 5px 15px;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+      }
+    }
+  }
 `
 
 export default SerchedProductItem
