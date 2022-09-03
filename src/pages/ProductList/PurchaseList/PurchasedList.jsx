@@ -75,6 +75,7 @@ const StyledPurchaseList = styled.div`
       box-sizing: border-box;
       &:hover {
         background-color: rgba(0, 0, 0, 0.1);
+        cursor: pointer;
       }
     }
   }

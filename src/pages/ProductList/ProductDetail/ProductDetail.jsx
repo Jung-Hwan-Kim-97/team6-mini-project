@@ -1,4 +1,10 @@
 import React from 'react'
+//은행로고
+import kbLogo from '~/assets/KB-logo.png'
+import wbLogo from '~/assets/WB-logo.jpg'
+import sbLogo from '~/assets/SB-logo.png'
+import baseLogo from '~/assets/logo2.png'
+//react 관련 데이터
 import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { BsCart3 } from 'react-icons/bs'
@@ -14,17 +20,30 @@ import FavoriteButton from '../../../components/FavoriteButton'
 const ProductDetail = () => {
   const { state } = useLocation()
   const navigate = useNavigate()
-  const { dispatch, purchasedList, purchaseItem } = useProduct()
+  const { dispatch, purchasedList } = useProduct()
   console.log(state)
 
   const purchaseRequestHandler = state => {
-    // if (purchasedList.includes(state)) {
-    //   alert('이미 구매하신 상품입니다!')
-    //   return
-    // }
-    dispatch(purchaseRequest(state))
-    dispatch(isVisibleHandler())
-    dispatch(modalHandler())
+    if (purchasedList.some(purchasedItem => purchasedItem.id === state.id)) {
+      alert('이미 구매한 상품입니다.')
+    } else {
+      dispatch(purchaseRequest(state))
+      dispatch(isVisibleHandler())
+      dispatch(modalHandler())
+    }
+  }
+
+  const imageSeletor = () => {
+    switch (state.kor_co_nm) {
+      case '우리은행':
+        return wbLogo
+      case '신한은행':
+        return sbLogo
+      case '국민은행':
+        return kbLogo
+      default:
+        return baseLogo
+    }
   }
 
   return (
@@ -60,7 +79,7 @@ const ProductDetail = () => {
             </ul>
           </div>
           <div className="right-bg">
-            <img src="" alt="" />
+            <img src={imageSeletor()} alt="국민은행" />
           </div>
         </div>
       </section>
@@ -129,9 +148,12 @@ const StyledProductDetail = styled.div`
       }
       .right-bg {
         background-color: #808080;
-        width: 300px;
+        width: 200px;
         height: 200px;
         margin: 10px 30px;
+        img {
+          width: 200px;
+        }
       }
     }
   }

@@ -16,10 +16,10 @@ const SerchedProductList = () => {
         <button
           className="btn"
           onClick={() => {
-            navigate('/')
+            navigate('/favorite')
           }}
         >
-          홈으로 이동
+          즐겨찾기
         </button>
         <button
           className="btn"
@@ -73,6 +73,7 @@ const StyledSerchedProductList = styled.div`
       box-sizing: border-box;
       &:hover {
         background-color: rgba(0, 0, 0, 0.1);
+        cursor: pointer;
       }
     }
   }

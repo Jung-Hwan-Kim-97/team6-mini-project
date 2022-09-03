@@ -44,8 +44,22 @@ const Header = () => {
         </button>
       </form>
       <div className="actions">
-        <button className="btn">로그인</button>
-        <button className="btn">회원가입</button>
+        <button
+          className="btn"
+          onClick={() => {
+            navigate('/logIn')
+          }}
+        >
+          로그인
+        </button>
+        <button
+          className="btn"
+          onClick={() => {
+            navigate('/signUp')
+          }}
+        >
+          회원가입
+        </button>
       </div>
     </StyledHeader>
   )
