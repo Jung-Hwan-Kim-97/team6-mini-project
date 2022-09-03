@@ -7,9 +7,7 @@ import 'aos/dist/aos.css'
 import HomeProduct from '../../components/HomeProduct'
 import HomeBanner from '../../components/HomeBanner'
 import HomeNav from '../../components/HomeNav'
-import HomeFavorite from '../../components/HomeFavorite'
 import { getUserInfo, hasLocalData } from '../../utils'
-
 import HomeButton from '../../components/HomeButton'
 import { productListData } from '../../data/homeData'
 const Home = () => {
