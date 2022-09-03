@@ -1,25 +1,30 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FaShoppingCart } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
+import { BsCart3 } from 'react-icons/bs'
+import { addItem } from '../../stores/reducers/cartSlice'
+import { useCart } from '../../stores/reducers/cartSlice'
 
-const ApplyButton = () => {
+const CartButton = (props) => {
+
+  const { dispatch } = useCart();
+  const navigate = useNavigate();
   return (
-    <StyledBotton>
+    <StyledButton>
       <div className='cart-button-container'>
-        <p>장바구니에 담기</p>
-        <button className="btn btn_cart">
-            <FaShoppingCart size="32" />
-        </button>
+        <BsCart3 className="btn btn_cart" size="30" color="#2D71C4" onClick={() => {
+          dispatch(addItem(props.item))
+          navigate('/cart')}}/>
       </div>
-    </StyledBotton>
+    </StyledButton>
   )
 }
 
-export default ApplyButton
+export default CartButton
 
-const StyledBotton = styled.div`
+const StyledButton = styled.div`
   p {
-    text-indent: -9999px;
+    display: none;
   }
   .btn {
     outline: none;
