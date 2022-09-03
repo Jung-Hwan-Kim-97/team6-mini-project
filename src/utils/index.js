@@ -19,4 +19,10 @@ const reIssue = async () => {
   }
 }
 
-export { setCookie, getCookie, reIssue }
+const getUserInfo = () => {
+  if (!localStorage.length) return
+  return JSON.parse(localStorage.getItem('userInfo'))
+}
+const hasLocalData = !!localStorage.getItem('userInfo')
+
+export { setCookie, getCookie, reIssue, getUserInfo, hasLocalData }

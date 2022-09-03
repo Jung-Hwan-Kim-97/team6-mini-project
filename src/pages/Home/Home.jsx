@@ -7,13 +7,17 @@ import 'aos/dist/aos.css'
 import HomeProduct from '../../components/HomeProduct'
 import HomeBanner from '../../components/HomeBanner'
 import HomeNav from '../../components/HomeNav'
+import HomeFavorite from '../../components/HomeFavorite'
+import { getUserInfo, hasLocalData } from '../../utils'
 import HomeButton from '../../components/HomeButton'
 import { productListData } from '../../data/homeData'
-const Home = () => {
-  const { productList } = useProduct()
-  const isLogin = useSelector(state => state.user.isLogin)
-  const userName = useSelector(state => state.user.userName)
 
+const Home = () => {
+  const isLogin = useSelector(state => state.user.isLogin) || hasLocalData
+  const userName =
+    useSelector(state => state.user.profile?.userName) ||
+    getUserInfo()?.userName
+  const { productList } = useProduct()
   const init = useCallback(() => {
     AOS.init({ duration: 2000 })
   }, [])

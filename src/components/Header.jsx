@@ -3,9 +3,11 @@ import styled from 'styled-components'
 import logo from '../assets/logo.png'
 import { BiSearchAlt } from 'react-icons/bi'
 import { useProduct, searchedProduct } from '../stores/productSlice'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
+import { logOut } from '../stores/user/userSlice'
+
 const Header = () => {
-  const isLogin = useState(false)
+  const isLogin = !!localStorage.getItem('userInfo')
   const [bankName, setBankName] = useState('')
 
   const navigate = useNavigate()
@@ -23,10 +25,14 @@ const Header = () => {
   }
 
   const searchToggle = () => {
-    const search = document.querySelector('.search-bar');
-    search.classList.toggle('active');
+    const search = document.querySelector('.search-bar')
+    search.classList.toggle('active')
   }
-
+  const handleLogOutClick = () => {
+    dispatch(logOut())
+    alert('로그아웃 되었습니다!!')
+    window.location.href = '/'
+  }
   return (
     <StyledHeader>
       <div
@@ -42,7 +48,7 @@ const Header = () => {
           <div className="search-icon" onClick={searchToggle}>
             <BiSearchAlt size="18" />
           </div>
-          <div className='input'>
+          <div className="input">
             <input
               type="text"
               onChange={getBankNameHandler}
@@ -50,26 +56,18 @@ const Header = () => {
               placeholder="조회하실 은행을 입력 해 주세요"
             />
           </div>
-          <button className="search-button">
-            검색
-          </button>
+          <button className="search-button">검색</button>
         </form>
-        <button
-          className="btn"
-          onClick={() => {
-            navigate('/logIn')
-          }}
-        >
-          로그인
-        </button>
-        <button
-          className="btn"
-          onClick={() => {
-            navigate('/signUp')
-          }}
-        >
-          회원가입
-        </button>
+      </div>
+      <div className="cta">
+        {isLogin ? (
+          <button onClick={handleLogOutClick}>로그아웃</button>
+        ) : (
+          <>
+            <Link to="/logIn">로그인</Link>
+            <Link to="/signUp">회원가입</Link>
+          </>
+        )}
       </div>
     </StyledHeader>
   )
@@ -82,6 +80,7 @@ const StyledHeader = styled.header`
   width: 100%;
   align-items: center;
   justify-content: space-between;
+  position: relative;
   .logo {
     margin-left: 40px;
     &:hover {
@@ -117,17 +116,39 @@ const StyledHeader = styled.header`
   } */
   .actions {
     margin-right: 40px;
-    display: flex;
-    align-items: center;
-    .btn {
+    a {
       color: #fff;
-      outline: none;
-      border: none;
       background-color: transparent;
-      cursor: pointer;
+      text-decoration: none;
       font-size: 20px;
       &:first-child {
         margin-right: 10px;
+      }
+    }
+  }
+  .cta {
+    right: 105px;
+    bottom: 5px;
+    position: absolute;
+    display: flex;
+    gap: 10px;
+    button {
+      color: #fff;
+      background-color: transparent;
+      outline: none;
+      border: none;
+      font-size: 20px;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    a {
+      font-size: 20px;
+      color: #fff;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
       }
     }
   }
