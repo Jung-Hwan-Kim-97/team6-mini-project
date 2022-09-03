@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import ApplyButton from '../Buttons/applyButton'
-import BookmarkButton from '../Buttons/BookmarkButton'
+import ApplyButton from '../Buttons/ApplyButton'
 import CloseButton from '../Buttons/CloseButton'
+import FavoriteButton from '../FavoriteButton'
 
 const Card = (props) => {
   return (
@@ -17,8 +17,8 @@ const Card = (props) => {
           <div className="savingsLimit item">{props.product.max_limit}</div>
         </div>
         <div className='btn-wrap'>
-          {/* <BookmarkButton onBookmarkClick={props.onBookmarkClick}/>
-          <ApplyButton onApplyClick={props.onApplyClick}/> */}
+          <FavoriteButton item={props.product}/>
+          <ApplyButton onApplyClick={props.product}/>
           <CloseButton item={props.product} />
         </div>
       </div>
@@ -30,8 +30,8 @@ export default Card
 
 const StyledCard = styled.div`
   .card-container {
-    min-width: 300px;
-    max-width: 600px;
+    min-width: 350x;
+    max-width: 900px;
     display: grid;
     grid-template-rows: 50px 30px 1fr 1fr;
     grid-template-columns: repeat(3, 1fr);
@@ -68,9 +68,9 @@ const StyledCard = styled.div`
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 0.5em;
     justify-self: end;
+    align-self: center;
     align-items: center;
     justify-items: center;
-    margin-bottom: 20px;
   }
   .productName {
     grid-area: productName;
@@ -81,7 +81,7 @@ const StyledCard = styled.div`
     grid-area: savingsLimit;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-row: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     align-items: center;
     justify-content: center;
     .moneyBoxText {

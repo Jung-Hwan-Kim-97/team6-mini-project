@@ -12,11 +12,9 @@ const CartButton = (props) => {
   return (
     <StyledButton>
       <div className='cart-button-container'>
-        <button className="btn btn_cart" >
-          <BsCart3 size="30" color="#2D71C4" onClick={() => {
-            dispatch(addItem(props.item))
-            navigate('/cart')}}/>
-        </button>
+        <BsCart3 className="btn btn_cart" size="30" color="#2D71C4" onClick={() => {
+          dispatch(addItem(props.item))
+          navigate('/cart')}}/>
       </div>
     </StyledButton>
   )
@@ -26,7 +24,7 @@ export default CartButton
 
 const StyledButton = styled.div`
   p {
-    text-indent: -9999px;
+    display: none;
   }
   .btn {
     outline: none;

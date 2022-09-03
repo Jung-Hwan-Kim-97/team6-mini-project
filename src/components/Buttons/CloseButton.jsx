@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { BsXLg } from "react-icons/bs";
-import { deleteItem, useCart } from '../../stores/reducers/cartSlice';
-import { useNavigate } from 'react-router-dom';
+import { deleteItem, useCart } from '../../stores/reducers/cartSlice'
+import { useNavigate } from 'react-router-dom'
 
 const CloseButton = (props) => {
   const { navigate } = useNavigate();
@@ -12,21 +12,17 @@ const CloseButton = (props) => {
     <StyledBotton>
       <div className='close-button-container'>
         <p>삭제하기</p>
-        <button className="btn btn_close" onClick={()=> dispatch(deleteItem(props.item))
-        }>
-            <BsXLg size="28" />
-        </button>
+          <BsXLg className="btn btn_close" onClick={()=> dispatch(deleteItem(props.item))} size="28" />
       </div>
     </StyledBotton>
   )
-
 }
 
 export default CloseButton
 
 const StyledBotton = styled.div`
   p {
-    text-indent: -9999px;
+    display: none;
   }
   .btn {
     background-color: transparent;
