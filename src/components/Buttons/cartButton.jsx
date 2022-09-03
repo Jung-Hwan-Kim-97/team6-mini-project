@@ -2,21 +2,20 @@ import React from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { BsCart3 } from 'react-icons/bs'
+import { addItem } from '../../stores/reducers/cartSlice'
+import { useCart } from '../../stores/reducers/cartSlice'
 
 const CartButton = (props) => {
-  const navigate = useNavigate()
-  console.log(props, "여기")
 
-  const navigateCart = props =>{
-    props.onAddCart
-    navigate('/cart')
-  }
+  const { dispatch } = useCart();
+  const navigate = useNavigate();
   return (
     <StyledButton>
       <div className='cart-button-container'>
-        <button className="btn btn_cart"
-        onClick={navigateCart} >
-          <BsCart3 size="30" color="#2D71C4" />
+        <button className="btn btn_cart" >
+          <BsCart3 size="30" color="#2D71C4" onClick={() => {
+            dispatch(addItem(props.item))
+            navigate('/cart')}}/>
         </button>
       </div>
     </StyledButton>

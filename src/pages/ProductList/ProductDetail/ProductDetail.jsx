@@ -9,13 +9,11 @@ import {
   isVisibleHandler,
 } from '~/stores/productSlice'
 import FavoriteButton from '../../../components/FavoriteButton'
-import { addItem } from '../../../stores/reducers/cartSlice'
 import CartButton from '../../../components/Buttons/CartButton'
 const ProductDetail = () => {
   const { state } = useLocation()
   const navigate = useNavigate()
   const { dispatch, purchasedList, purchaseItem } = useProduct()
-  console.log(state)
 
   const purchaseRequestHandler = state => {
     if (purchasedList.includes(state)) {
@@ -36,8 +34,7 @@ const ProductDetail = () => {
       <section className="product-info">
         <div className="product-icons">
           <FavoriteButton item={state} />
-          <CartButton onAddCart={dispatch(addItem(state))}/>
-
+          <CartButton item= {state}/>
         </div>
 
         <div className="detail-info">

@@ -5,22 +5,21 @@ import BookmarkButton from '../Buttons/BookmarkButton'
 import CloseButton from '../Buttons/CloseButton'
 
 const Card = (props) => {
-    console.log(CloseButton)
   return (
     <StyledCard>
       <div className='card-container'>
-        <div className="bankName item">{props.bankName}</div>
-        <div className="productName item">{props.productName}</div>
-        <div className="productDescription item">{props.productDescription}</div>
+        <div className="bankName item">{props.product.kor_co_nm}</div>
+        <div className="productName item">{props.product.fin_prdt_nm}</div>
+        <div className="productDescription item">{props.product.mtrt_int}</div>
         <div className="moneyBox">
           <p className="moneyBoxText">저축한도 (월)</p>
           <p className='moneyUnit'>₩</p>
-          <div className="savingsLimit item">{props.savingsLimit}</div>
+          <div className="savingsLimit item">{props.product.max_limit}</div>
         </div>
         <div className='btn-wrap'>
-          <BookmarkButton onBookmarkClick={props.onBookmarkClick}/>
-          <ApplyButton />
-          <CloseButton onDeleteClick={props.onDeleteClick} />
+          {/* <BookmarkButton onBookmarkClick={props.onBookmarkClick}/>
+          <ApplyButton onApplyClick={props.onApplyClick}/> */}
+          <CloseButton item={props.product} />
         </div>
       </div>
     </StyledCard>

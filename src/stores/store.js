@@ -12,7 +12,7 @@ const store = configureStore({
     product,
     user: userSlice,
     favorite: favoriteSlice,
-    cartList: cartList.reducer
+    cart: cartList
   },
 })
 

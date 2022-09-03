@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import { FaClipboardCheck } from 'react-icons/fa'
 
-const ApplyButton = () => {
+const ApplyButton = (props) => {
   return (
     <StyledBotton>
       <div className='apply-button-container'>
         <p>신청하기</p>
-        <button className="btn btn_apply">
+        <button className="btn btn_apply" onClick={() => props.onApplyClick}>
             <FaClipboardCheck size="32" />
         </button>
       </div>

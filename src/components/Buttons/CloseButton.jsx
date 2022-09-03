@@ -1,18 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
 import { BsXLg } from "react-icons/bs";
-import cartList from '../../stores/reducers/cartSlice';
+import { deleteItem, useCart } from '../../stores/reducers/cartSlice';
+import { useNavigate } from 'react-router-dom';
 
 const CloseButton = (props) => {
+  const { navigate } = useNavigate();
+  const { dispatch } = useCart();
+
   return (
     <StyledBotton>
       <div className='close-button-container'>
         <p>삭제하기</p>
-        <button className="btn btn_close" onClick={props.onDeleteClick}>
+        <button className="btn btn_close" onClick={()=> dispatch(deleteItem(props.item))
+        }>
             <BsXLg size="28" />
         </button>
       </div>
-      {console.log(cartList.getInitialState)}
     </StyledBotton>
   )
 
