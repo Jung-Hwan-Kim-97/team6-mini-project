@@ -1,4 +1,10 @@
 import React from 'react'
+//은행로고
+import kbLogo from '~/assets/KB-logo.png'
+import wbLogo from '~/assets/WB-logo.jpg'
+import sbLogo from '~/assets/SB-logo.png'
+import baseLogo from '~/assets/logo2.png'
+//react 관련 데이터
 import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import ProductNotice from './ProductNotice'

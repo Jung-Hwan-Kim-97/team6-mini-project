@@ -19,13 +19,13 @@ const ProductItem = ({ item }) => {
   const navigate = useNavigate()
 
   const purchaseRequestHandler = item => {
-    if (purchasedList.includes(item)) {
-      alert('이미 구매하신 상품입니다!')
-      return
+    if (purchasedList.some(purchasedItem => purchasedItem.id === item.id)) {
+      alert('이미 구매한 상품입니다.')
+    } else {
+      dispatch(purchaseRequest(item))
+      dispatch(isVisibleHandler())
+      dispatch(modalHandler())
     }
-    dispatch(purchaseRequest(item))
-    dispatch(isVisibleHandler())
-    dispatch(modalHandler())
   }
 
   return (
@@ -68,6 +68,7 @@ const StyledProductItem = styled.div`
   margin: 20px;
   box-sizing: border-box;
   padding: 10px 0;
+  color: #fff;
   .item-container {
     display: flex;
     justify-content: space-between;
@@ -88,6 +89,10 @@ const StyledProductItem = styled.div`
         padding: 5px 20px;
         background-color: ${({ theme }) => theme.palette.cobaltBlue};
         color: #fff;
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.5);
+          cursor: pointer;
+        }
       }
       .btn_favorite {
         background-color: transparent;

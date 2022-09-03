@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import ApplyButton from '../Buttons/ApplyButton'
 import CloseButton from '../Buttons/CloseButton'
-import FavoriteButton from '../FavoriteButton'
 
 const Card = (props) => {
   return (
@@ -36,10 +35,10 @@ const StyledCard = styled.div`
     grid-template-rows: 50px 30px 1fr 1fr;
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas:
-      "bankName bankName btnSet"
-      "productName productName productName"
-      "productDescription productDescription savingsLimit"
-      "productDescription productDescription .";
+      'bankName bankName btnSet'
+      'productName productName productName'
+      'productDescription productDescription savingsLimit'
+      'productDescription productDescription .';
     background-color: ${({ theme }) => theme.palette.lightBlue};
     box-sizing: border-box;
     border-radius: 0.8rem;
@@ -49,13 +48,13 @@ const StyledCard = styled.div`
     color: ${({ theme }) => theme.palette.fontColor};
     line-height: 1;
   }
-  .item{
+  .item {
     display: flex;
     position: relative;
     align-items: center;
     padding: 10px;
     flex-shrink: 0;
-    white-space:nowrap;
+    white-space: nowrap;
     font-size: 1em;
   }
   .bankName {
@@ -64,7 +63,7 @@ const StyledCard = styled.div`
   }
   .btn-wrap {
     grid-area: btnSet;
-    display: grid; 
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 0.5em;
     justify-self: end;
@@ -75,7 +74,7 @@ const StyledCard = styled.div`
   .productName {
     grid-area: productName;
     font-size: 1.8em;
-    color: ${({ theme }) => theme.palette.cobaltBlue}};
+    /* color: ${({ theme }) => theme.palette.cobaltBlue}}; */
   }
   .moneyBox {
     grid-area: savingsLimit;
@@ -89,17 +88,17 @@ const StyledCard = styled.div`
       font-size: 16px;
       justify-self: center;
     }
-    .moneyUnit{
+    .moneyUnit {
       font-size: 24px;
       padding-right: 4px;
       justify-self: end;
     }
-    .savingsLimit{
+    .savingsLimit {
       font-size: 24px;
       grid-column: span 2;
       justify-self: start;
       padding: 0;
-      marign: 0;
+      margin: 0;
     }
   }
   .productDescription {
