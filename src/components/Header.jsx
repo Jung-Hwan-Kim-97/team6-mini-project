@@ -22,6 +22,11 @@ const Header = () => {
     setBankName('')
   }
 
+  const searchToggle = () => {
+    const search = document.querySelector('.search-bar');
+    search.classList.toggle('active');
+  }
+
   return (
     <StyledHeader>
       <div
@@ -32,18 +37,23 @@ const Header = () => {
       >
         <img src={logo} alt="logo-image" />
       </div>
-      <form className="search-bar" onSubmit={formHandler}>
-        <input
-          type="text"
-          onChange={getBankNameHandler}
-          value={bankName}
-          placeholder="조회하실 은행을 입력 해 주세요"
-        />
-        <button className="search-icon">
-          <BiSearchAlt size="18" />
-        </button>
-      </form>
       <div className="actions">
+        <form className="search-bar" onSubmit={formHandler}>
+          <div className="search-icon" onClick={searchToggle}>
+            <BiSearchAlt size="18" />
+          </div>
+          <div className='input'>
+            <input
+              type="text"
+              onChange={getBankNameHandler}
+              value={bankName}
+              placeholder="조회하실 은행을 입력 해 주세요"
+            />
+          </div>
+          <button className="search-button">
+            검색
+          </button>
+        </form>
         <button className="btn">로그인</button>
         <button className="btn">회원가입</button>
       </div>
@@ -51,7 +61,7 @@ const Header = () => {
   )
 }
 
-const StyledHeader = styled.div`
+const StyledHeader = styled.header`
   display: flex;
   background-color: ${({ theme }) => theme.palette.cobaltBlue};
   height: 70px;
@@ -62,13 +72,12 @@ const StyledHeader = styled.div`
     margin-left: 40px;
     &:hover {
       cursor: pointer;
-      background-color: rgba(0, 0, 0, 0.3);
     }
     img {
       height: 64px;
     }
   }
-  .search-bar {
+  /* .search-bar {
     position: relative;
     display: flex;
     flex-grow: 1;
@@ -91,19 +100,83 @@ const StyledHeader = styled.div`
         background-color: rgba(0, 0, 0, 0.3);
       }
     }
-  }
+  } */
   .actions {
     margin-right: 40px;
+    display: flex;
+    align-items: center;
     .btn {
       color: #fff;
       outline: none;
       border: none;
       background-color: transparent;
-
+      cursor: pointer;
       font-size: 20px;
       &:first-child {
         margin-right: 10px;
       }
+    }
+  }
+  .search-bar {
+    margin-right: 10px;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: ${({ theme }) => theme.palette.whiteColor};
+    border-radius: 60px;
+    transition: 0.5s;
+    box-shadow: 0 0 0 5px #2573ef;
+    overflow: hidden;
+    &.active {
+      width: 360px;
+    }
+    .search-icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 30px;
+      height: 30px;
+      background: ${({ theme }) => theme.palette.whiteColor};
+      border-radius: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      cursor: pointer;
+    }
+    .input {
+      position: relative;
+      width: 280px;
+      height: 30px;
+      left: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      input {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        font-size: 12px;
+        padding: 0;
+      }
+    }
+    .search-button {
+      border: none;
+      outline: none;
+      background-color: ${({ theme }) => theme.palette.whiteColor};
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      right: 10px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 `
