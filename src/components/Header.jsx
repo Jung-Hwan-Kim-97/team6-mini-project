@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import logo from '../assets/logo.png'
 import { BiSearchAlt } from 'react-icons/bi'
 import { useProduct, searchedProduct } from '../stores/productSlice'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 const Header = () => {
   const isLogin = useState(false)
   const [bankName, setBankName] = useState('')
@@ -44,8 +44,8 @@ const Header = () => {
         </button>
       </form>
       <div className="actions">
-        <button className="btn">로그인</button>
-        <button className="btn">회원가입</button>
+        <Link to="/logIn">로그인</Link>
+        <Link to="/signUp">회원가입</Link>
       </div>
     </StyledHeader>
   )
@@ -94,12 +94,10 @@ const StyledHeader = styled.div`
   }
   .actions {
     margin-right: 40px;
-    .btn {
+    a {
       color: #fff;
-      outline: none;
-      border: none;
       background-color: transparent;
-
+      text-decoration: none;
       font-size: 20px;
       &:first-child {
         margin-right: 10px;

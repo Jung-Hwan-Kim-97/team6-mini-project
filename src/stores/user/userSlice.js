@@ -3,6 +3,7 @@ import axios from 'axios'
 import { baseURL, STATUS } from '~/utils/constants'
 
 const initialState = {
+  isLogin: false,
   profile: undefined,
   error: {
     status: '',
@@ -37,14 +38,19 @@ export const signUp = createAsyncThunk(
 const userSlice = createSlice({
   name: 'userSlice',
   initialState,
-  reducers: {},
+  reducers: {
+    setUserInfo(state, { payload }) {
+      state.profile = payload
+      state.isLogin = true
+    },
+  },
   extraReducers: builder => {
     builder.addCase(login.fulfilled, (state, { payload }) => {
-      state.error.status = 'STATUS.SUCCESS'
+      state.error.status = STATUS.SUCCESS
       state.loading = false
     })
     builder.addCase(login.rejected, (state, { payload }) => {
-      state.error.status = 'STATUS.FAILED'
+      state.error.status = STATUS.FAILED
       state.loading = false
     })
     builder.addCase(login.pending, state => {
@@ -55,4 +61,4 @@ const userSlice = createSlice({
 
 export default userSlice.reducer
 
-export const { increase, decrease } = userSlice.actions
+export const { setUserInfo } = userSlice.actions
