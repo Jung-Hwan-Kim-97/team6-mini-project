@@ -44,64 +44,96 @@ const Header = () => {
         </button>
       </form>
       <div className="actions">
-        <button className="btn">로그인</button>
-        <button className="btn">회원가입</button>
+        <button
+          className="btn"
+          onClick={() => {
+            navigate('/logIn')
+          }}
+        >
+          로그인
+        </button>
+        <button
+          className="btn"
+          onClick={() => {
+            navigate('/signUp')
+          }}
+        >
+          회원가입
+        </button>
       </div>
     </StyledHeader>
   )
 }
 
 const StyledHeader = styled.div`
-  display: flex;
   background-color: ${({ theme }) => theme.palette.cobaltBlue};
-  height: 70px;
   width: 100%;
-  align-items: center;
   justify-content: space-between;
-  .logo {
-    margin-left: 40px;
-    &:hover {
-      cursor: pointer;
-      background-color: rgba(0, 0, 0, 0.3);
-    }
-    img {
-      height: 64px;
-    }
-  }
-  .search-bar {
-    position: relative;
+  .container {
+    min-width: 250px;
+    max-width: 1100px;
+    height: 100%;
     display: flex;
-    flex-grow: 1;
-    input {
-      flex-grow: 1;
-      margin: 0 10px;
-      outline: none;
-      border-radius: 8px;
-      border: 1px solid;
-      box-sizing: border-box;
-      padding: 2px 0;
-    }
-    .search-icon {
-      position: absolute;
-      right: 13px;
-      background-color: transparent;
-      border: none;
-      &:hover {
+    margin: 0 auto;
+    padding: 0 20px;
+    .logo {
+      align-items: center;
+      img {
+        height: 64px;
         cursor: pointer;
-        background-color: rgba(0, 0, 0, 0.3);
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.3);
+          border-radius: 3em;
+        }
       }
     }
-  }
-  .actions {
-    margin-right: 40px;
-    .btn {
-      color: #fff;
-      outline: none;
-      border: none;
-      background-color: transparent;
-
-      font-size: 20px;
-      &:first-child {
+    .search-bar {
+      position: relative;
+      display: flex;
+      width: calc(100% - 200px);
+      height: 30px;
+      align-self: center;
+      justify-self: center;
+      flex-grow: 1;
+      input {
+        flex-grow: 1;
+        margin: 0 12px;
+        outline: none;
+        border-radius: 8px;
+        border: 1px solid;
+        box-sizing: border-box;
+        padding: 6px 8px;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .search-icon {
+        position: absolute;
+        top: 2px;
+        right: 12px;
+        background-color: transparent;
+        color: ${({ theme }) => theme.palette.fontColor};
+        border: none;
+        &:hover {
+          cursor: pointer;
+          color: ${({ theme }) => theme.palette.cobaltBlue};
+        }
+      }
+    }
+    .actions {
+      display: flex;
+      align-self: center;
+      .btn {
+        color: #fff;
+        padding: 10px 6px;
+        outline: none;
+        border: none;
+        background-color: transparent;
+        font-size: 1.2em;
+        cursor: pointer;
+        white-space: nowrap;
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.3);
+      } &:first-child {
         margin-right: 10px;
       }
     }

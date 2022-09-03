@@ -18,13 +18,26 @@ const ProductDetail = () => {
   const { dispatch, purchasedList, purchaseItem } = useProduct()
 
   const purchaseRequestHandler = state => {
-    if (purchasedList.includes(state)) {
-      alert('이미 구매하신 상품입니다!')
-      return
+    if (purchasedList.some(purchasedItem => purchasedItem.id === state.id)) {
+      alert('이미 구매한 상품입니다.')
+    } else {
+      dispatch(purchaseRequest(state))
+      dispatch(isVisibleHandler())
+      dispatch(modalHandler())
     }
-    dispatch(purchaseRequest(state))
-    dispatch(isVisibleHandler())
-    dispatch(modalHandler())
+  }
+
+  const imageSeletor = () => {
+    switch (state.kor_co_nm) {
+      case '우리은행':
+        return wbLogo
+      case '신한은행':
+        return sbLogo
+      case '국민은행':
+        return kbLogo
+      default:
+        return baseLogo
+    }
   }
 
   return (
@@ -36,7 +49,6 @@ const ProductDetail = () => {
           <FavoriteButton item={state} />
           <CartButton item= {state}/>
         </div>
-
         <div className="detail-info">
           <div className="left-info">
             <ul>
@@ -58,7 +70,7 @@ const ProductDetail = () => {
             </ul>
           </div>
           <div className="right-bg">
-            <img src="" alt="" />
+            <img src={imageSeletor()} alt="국민은행" />
           </div>
         </div>
       </section>
@@ -91,41 +103,43 @@ const StyledProductDetail = styled.div`
   min-width: 350px;
   max-width: 900px;
   .product-info {
-    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 50px 30px 1fr;
+    column-gap: 20px;
     background-color: ${({ theme }) => theme.palette.lightBlue};
     border: 1px solid ${({ theme }) => theme.palette.cobaltBlue};
     color: ${({ theme }) => theme.palette.fontColor};
     border-radius: 0.8em;
     box-sizing: border-box;
     padding: 16px 20px;
-    display: grid;
 
     .product-icons {
-      width: 66px;
       display: grid;
+      height: 36px;
       grid-template-columns: repeat(2, 1fr);
-      text-align: end;
+      justify-self: end;
       box-sizing: border-box;
       grid-column: 2 / 3;
     }
     .detail-info {
-      display: flex;
-      justify-content: space-between;
-      .left-info {
-        ul {
-          margin-left: 15px;
-          li {
-            line-height: 1.6;
-          }
+      grid-row: 1 / 4;
+      justify-content: space-between;      
+      ul {
+        li {
+          line-height: 1.6;
         }
-      }
-      .right-bg {
-        grid-column: 2 / 3;
-        flex-shrink: 0;
-        background-color: #808080;
-        width: 160px;
-        height: 200px;
-        margin-left: 30px;
+      } 
+    }
+    .infoImg {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+      max-width: calc(100% / 2);
+      min-width: 150px;
+      margin: 0 auto;
+      img {
+        display: block;
+        width: 100%;
       }
     }
   }
