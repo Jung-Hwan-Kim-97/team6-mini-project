@@ -136,6 +136,32 @@ const StyledHeader = styled.header`
       }
     }
   }
+  .cta {
+    right: 105px;
+    bottom: 5px;
+    position: absolute;
+    display: flex;
+    gap: 10px;
+    button {
+      color: #fff;
+      background-color: transparent;
+      outline: none;
+      border: none;
+      font-size: 20px;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    a {
+      font-size: 20px;
+      color: #fff;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
   .search-bar {
     margin-right: 10px;
     position: relative;

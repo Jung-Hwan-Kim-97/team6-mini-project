@@ -10,6 +10,7 @@ import HomeNav from '../../components/HomeNav'
 import { getUserInfo, hasLocalData } from '../../utils'
 import HomeButton from '../../components/HomeButton'
 import { productListData } from '../../data/homeData'
+
 const Home = () => {
   const isLogin = useSelector(state => state.user.isLogin) || hasLocalData
   const userName =
