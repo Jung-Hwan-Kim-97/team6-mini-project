@@ -45,3 +45,10 @@ export  function getRandomInt(min, max) {
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min)) + min //최댓값은 제외, 최솟값은 포함
   }
+
+
+  export const productListData = [
+    {title: '고객님을 위한 맞춤 추천! 🌟', aosDuration: '1800', id: nanoid()},
+    {title: 'FastBank의 또 다른 추천 상품을 확인해 보세요! 🪄', aosDuration: '1500', id: nanoid()},
+    {title: '이런 상품은 어떠세요? 🤔', aosDuration: 'init', id: nanoid()},
+  ]
