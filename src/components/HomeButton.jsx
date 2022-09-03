@@ -3,29 +3,25 @@ import React, { useEffect, useCallback } from 'react'
 
 import styled from 'styled-components'
 
-function HomeFavorite() {
+function HomeButton({ urlPath, name }) {
   const navigate = useNavigate()
   useEffect(() => {}, [navigate])
 
   const favoriteHandler = useCallback(() => {
-    navigate('/favorite')
+    navigate(urlPath)
   }, [navigate])
 
-  return (
-    <StyledHomeFavorite onClick={favoriteHandler}>
-      즐겨찾기 🌟
-    </StyledHomeFavorite>
-  )
+  return <StyledHomeButton onClick={favoriteHandler}>{name}</StyledHomeButton>
 }
 
-export default HomeFavorite
-const StyledHomeFavorite = styled.button`
-  color: #fff;
-  background-color: #2d71c3;
+export default HomeButton
+const StyledHomeButton = styled.button`
+  color: #ffffff;
+  background-color: #5a81ff;
   border: none;
   padding: 10px;
   border-radius: 5px;
-
+  margin: 0 0 5px 5px;
   :hover {
     background-color: #3e95ff;
     color: #fff;

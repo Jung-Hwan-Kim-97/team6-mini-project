@@ -3,9 +3,11 @@ import styled from 'styled-components'
 import logo from '../assets/logo.png'
 import { BiSearchAlt } from 'react-icons/bi'
 import { useProduct, searchedProduct } from '../stores/productSlice'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
+import { logOut } from '../stores/user/userSlice'
+
 const Header = () => {
-  const isLogin = useState(false)
+  const isLogin = !!localStorage.getItem('userInfo')
   const [bankName, setBankName] = useState('')
 
   const navigate = useNavigate()
@@ -22,6 +24,15 @@ const Header = () => {
     setBankName('')
   }
 
+  const searchToggle = () => {
+    const search = document.querySelector('.search-bar')
+    search.classList.toggle('active')
+  }
+  const handleLogOutClick = () => {
+    dispatch(logOut())
+    alert('로그아웃 되었습니다!!')
+    window.location.href = '/'
+  }
   return (
     <StyledHeader>
       <div
@@ -32,110 +43,183 @@ const Header = () => {
       >
         <img src={logo} alt="logo-image" />
       </div>
-      <form className="search-bar" onSubmit={formHandler}>
-        <input
-          type="text"
-          onChange={getBankNameHandler}
-          value={bankName}
-          placeholder="조회하실 은행을 입력 해 주세요"
-        />
-        <button className="search-icon">
-          <BiSearchAlt size="18" />
-        </button>
-      </form>
       <div className="actions">
-        <button
-          className="btn"
-          onClick={() => {
-            navigate('/logIn')
-          }}
-        >
-          로그인
-        </button>
-        <button
-          className="btn"
-          onClick={() => {
-            navigate('/signUp')
-          }}
-        >
-          회원가입
-        </button>
+        <form className="search-bar" onSubmit={formHandler}>
+          <div className="search-icon" onClick={searchToggle}>
+            <BiSearchAlt size="18" />
+          </div>
+          <div className="input">
+            <input
+              type="text"
+              onChange={getBankNameHandler}
+              value={bankName}
+              placeholder="조회하실 은행을 입력 해 주세요"
+            />
+          </div>
+          <button className="search-button">검색</button>
+        </form>
+        {isLogin ? (
+          <button onClick={handleLogOutClick}>로그아웃</button>
+        ) : (
+          <>
+            <Link to="/logIn">로그인</Link>
+            <Link to="/signUp">회원가입</Link>
+          </>
+        )}
       </div>
     </StyledHeader>
   )
 }
 
-const StyledHeader = styled.div`
+const StyledHeader = styled.header`
+  display: flex;
   background-color: ${({ theme }) => theme.palette.cobaltBlue};
   width: 100%;
   justify-content: space-between;
-  .container {
-    min-width: 250px;
-    max-width: 1100px;
-    height: 100%;
+  position: relative;
+  .logo {
+    margin-left: 40px;
+    &:hover {
+      cursor: pointer;
+    }
+    img {
+      height: 64px;
+    }
+  }
+  /* .search-bar {
+    position: relative;
     display: flex;
-    margin: 0 auto;
-    padding: 0 20px;
-    .logo {
-      align-items: center;
-      img {
-        height: 64px;
-        cursor: pointer;
-        &:hover {
-          background-color: rgba(0, 0, 0, 0.3);
-          border-radius: 3em;
-        }
-      }
-    }
-    .search-bar {
-      position: relative;
-      display: flex;
-      width: calc(100% - 200px);
-      height: 30px;
-      align-self: center;
-      justify-self: center;
+    flex-grow: 1;
+    input {
       flex-grow: 1;
-      input {
-        flex-grow: 1;
-        margin: 0 12px;
-        outline: none;
-        border-radius: 8px;
-        border: 1px solid;
-        box-sizing: border-box;
-        padding: 6px 8px;
-        overflow: hidden;
-        white-space: nowrap;
-      }
-      .search-icon {
-        position: absolute;
-        top: 2px;
-        right: 12px;
-        background-color: transparent;
-        color: ${({ theme }) => theme.palette.fontColor};
-        border: none;
-        &:hover {
-          cursor: pointer;
-          color: ${({ theme }) => theme.palette.cobaltBlue};
-        }
+      margin: 0 10px;
+      outline: none;
+      border-radius: 8px;
+      border: 1px solid;
+      box-sizing: border-box;
+      padding: 2px 0;
+    }
+    .search-icon {
+      position: absolute;
+      right: 13px;
+      background-color: transparent;
+      border: none;
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.3);
       }
     }
-    .actions {
-      display: flex;
-      align-self: center;
-      .btn {
-        color: #fff;
-        padding: 10px 6px;
-        outline: none;
-        border: none;
-        background-color: transparent;
-        font-size: 1.2em;
-        cursor: pointer;
-        white-space: nowrap;
-        &:hover {
-          background-color: rgba(0, 0, 0, 0.3);
-      } &:first-child {
-        margin-right: 10px;
+  } */
+  .actions {
+    margin-right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    button {
+      color: #fff;
+      background-color: transparent;
+      outline: none;
+      border: none;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
       }
+    }
+    a {
+      color: #fff;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .cta {
+    right: 105px;
+    bottom: 5px;
+    position: absolute;
+    display: flex;
+    gap: 10px;
+    button {
+      color: #fff;
+      background-color: transparent;
+      outline: none;
+      border: none;
+      font-size: 20px;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    a {
+      font-size: 20px;
+      color: #fff;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .search-bar {
+    margin-right: 10px;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: ${({ theme }) => theme.palette.whiteColor};
+    border-radius: 60px;
+    transition: 0.5s;
+    box-shadow: 0 0 0 5px #2573ef;
+    overflow: hidden;
+    &.active {
+      width: 360px;
+    }
+    .search-icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 30px;
+      height: 30px;
+      background: ${({ theme }) => theme.palette.whiteColor};
+      border-radius: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      cursor: pointer;
+    }
+    .input {
+      position: relative;
+      width: 280px;
+      height: 30px;
+      left: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      input {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        font-size: 12px;
+        padding: 0;
+      }
+    }
+    .search-button {
+      border: none;
+      outline: none;
+      background-color: ${({ theme }) => theme.palette.whiteColor};
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      right: 10px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 `
