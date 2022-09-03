@@ -8,7 +8,7 @@ import HomeProduct from '../../components/HomeProduct'
 import HomeBanner from '../../components/HomeBanner'
 import HomeNav from '../../components/HomeNav'
 import HomeButton from '../../components/HomeButton'
-
+import { productListData } from '../../data/homeData'
 const Home = () => {
   const { productList } = useProduct()
   const isLogin = useSelector(state => state.user.isLogin)
@@ -21,6 +21,21 @@ const Home = () => {
   useEffect(() => {
     init()
   }, [productList, userName, isLogin])
+
+  const HomeProductList = productListData.map(list => (
+    <StyledContainer
+      key={list.id}
+      data-aos="fade-up"
+      data-aos-duration={
+        list.aosDuration === 'init' ? '2000' : list.aosDuration
+      }
+    >
+      <p className="title">{list.title}</p>
+      <div className="wrap">
+        <HomeProduct dataList={productList} />
+      </div>
+    </StyledContainer>
+  ))
 
   const html = (
     <StyledWrapper>
@@ -46,31 +61,8 @@ const Home = () => {
         <HomeNav />
       </div>
 
-      {/* HomeProduct - 1 */}
-      <StyledContainer data-aos="fade-up">
-        <p className="title">고객님을 위한 맞춤 추천! 🌟</p>
-        <div className="wrap">
-          <HomeProduct dataList={productList} />
-        </div>
-      </StyledContainer>
-
-      {/* HomeProduct - 2 */}
-      <StyledContainer data-aos="fade-up" data-aos-duration="1800">
-        <p className="title">
-          FastBank의 또 다른 추천 상품을 확인해 보세요! 🪄
-        </p>
-        <div className="wrap">
-          <HomeProduct dataList={productList} />
-        </div>
-      </StyledContainer>
-
-      {/* HomeProduct - 3 */}
-      <StyledContainer data-aos="fade-up">
-        <p className="title">이런 상품은 어떠세요? 🤔</p>
-        <div className="wrap">
-          <HomeProduct dataList={productList} />
-        </div>
-      </StyledContainer>
+      {/* HomeProduct 1, 2, 3 */}
+      {HomeProductList}
     </StyledWrapper>
   )
   return html
@@ -86,11 +78,9 @@ const StyledWrapper = styled.div`
   align-items: space-between;
   justify-content: space-between;
 `
-
 const StyledContainer = styled.div`
   font-weight: 700;
   margin: 10px 0;
-
   .title {
     font-weight: 600;
     font-size: 18px;
@@ -98,14 +88,12 @@ const StyledContainer = styled.div`
     border-bottom: #ccc solid 1px;
     margin-bottom: 15px;
   }
-
   .wrap {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 `
-
 const StyledLoginArea = styled.div`
   font-size: 21px;
   font-weight: 500;
