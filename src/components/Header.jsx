@@ -58,8 +58,6 @@ const Header = () => {
           </div>
           <button className="search-button">검색</button>
         </form>
-      </div>
-      <div className="cta">
         {isLogin ? (
           <button onClick={handleLogOutClick}>로그아웃</button>
         ) : (
@@ -116,13 +114,25 @@ const StyledHeader = styled.header`
   } */
   .actions {
     margin-right: 40px;
-    a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    button {
       color: #fff;
       background-color: transparent;
+      outline: none;
+      border: none;
       text-decoration: none;
-      font-size: 20px;
-      &:first-child {
-        margin-right: 10px;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    a {
+      color: #fff;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
       }
     }
   }
