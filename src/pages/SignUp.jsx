@@ -8,7 +8,6 @@ import {
   JOB_ARR,
 } from '~/utils/constants'
 import Button from '~/components/user/Button'
-import { signUp } from '~/stores/user/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
 const Form = styled.form`

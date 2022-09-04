@@ -30,12 +30,4 @@ const PLACEHOLDER = {
   age: 'ex) 20',
 }
 const JOB_ARR = ['무직', '회사원', '자영업', '주부', '기타']
-export {
-  baseURL,
-  STATUS,
-  ID_LABEL,
-  FORM_REGEX,
-  FORM_ERR_MSG,
-  PLACEHOLDER,
-  JOB_ARR,
-}
+export { ID_LABEL, FORM_REGEX, FORM_ERR_MSG, PLACEHOLDER, JOB_ARR }

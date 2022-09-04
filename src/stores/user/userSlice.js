@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { baseURL, STATUS } from '~/utils/constants'
 
 const initialState = {
   isLogin: false,
