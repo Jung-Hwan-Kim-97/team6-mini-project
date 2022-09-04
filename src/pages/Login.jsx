@@ -43,7 +43,6 @@ function Login() {
     mode: 'onChange',
   })
   const onValid = form => {
-    //logIn({ ...form })
     if (form.email !== 'test123@naver.com' || form.password !== '12341234')
       return
     dispatch(

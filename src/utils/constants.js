@@ -1,8 +1,3 @@
-const baseURL = ''
-const STATUS = {
-  SUCCESS: 'success',
-  FAILED: 'failed',
-}
 const ID_LABEL = {
   email: '이메일',
   name: '유저이름',
