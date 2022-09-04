@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import ApplyButton from '../Buttons/ApplyButton'
 import CloseButton from '../Buttons/CloseButton'
+import FavoriteButton from '../FavoriteButton'
 
 const Card = (props) => {
   return (

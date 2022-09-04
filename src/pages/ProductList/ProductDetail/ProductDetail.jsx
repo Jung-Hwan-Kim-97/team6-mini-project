@@ -55,30 +55,27 @@ const ProductDetail = () => {
           <FavoriteButton item={state} />
           <CartButton item= {state}/>
         </div>
-
         <div className="detail-info">
-          <div className="left-info">
-            <ul>
-              <li>은행명: {state.kor_co_nm}</li>
-              <li>상품명: {state.fin_prdt_nm}</li>
-              <li>
-                저축한도:
-                {state.max_limit === null
-                  ? '한도 없음'
-                  : `${state.max_limit}원`}
-              </li>
-              <li>가입대상: {state.join_member}</li>
-              <li>가입경로: {state.join_way}</li>
-              <li>가입기간: {state.etc_note}</li>
-              <li>
-                상세 설명: {state.mtrt_int}
-                <p>{state.spcl_cnd}</p>
-              </li>
-            </ul>
-          </div>
-          <div className="right-bg">
-            <img src={imageSeletor()} alt="국민은행" />
-          </div>
+          <ul>
+            <li>은행명: {state.kor_co_nm}</li>
+            <li>상품명: {state.fin_prdt_nm}</li>
+            <li>
+              저축한도:
+              {state.max_limit === null
+                ? '한도 없음'
+                : `${state.max_limit}원`}
+            </li>
+            <li>가입대상: {state.join_member}</li>
+            <li>가입경로: {state.join_way}</li>
+            <li>가입기간: {state.etc_note}</li>
+            <li>
+              상세 설명: {state.mtrt_int}
+              <p>{state.spcl_cnd}</p>
+            </li>
+          </ul>
+        </div>
+        <div className="infoImg">
+          <img src={imageSeletor()} alt="국민은행" />
         </div>
       </section>
       <section className="actions">
@@ -110,41 +107,43 @@ const StyledProductDetail = styled.div`
   min-width: 350px;
   max-width: 900px;
   .product-info {
-    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 50px 30px 1fr;
+    column-gap: 20px;
     background-color: ${({ theme }) => theme.palette.lightBlue};
     border: 1px solid ${({ theme }) => theme.palette.cobaltBlue};
     color: ${({ theme }) => theme.palette.fontColor};
     border-radius: 0.8em;
     box-sizing: border-box;
     padding: 16px 20px;
-    display: grid;
 
     .product-icons {
-      width: 66px;
       display: grid;
+      height: 36px;
       grid-template-columns: repeat(2, 1fr);
-      text-align: end;
+      justify-self: end;
       box-sizing: border-box;
       grid-column: 2 / 3;
     }
     .detail-info {
-      display: flex;
-      justify-content: space-between;
-      .left-info {
-        ul {
-          margin-left: 15px;
-          li {
-            line-height: 1.6;
-          }
+      grid-row: 1 / 4;
+      justify-content: space-between;      
+      ul {
+        li {
+          line-height: 1.6;
         }
-      }
-      .right-bg {
-        grid-column: 2 / 3;
-        flex-shrink: 0;
-        background-color: #808080;
-        width: 160px;
-        height: 200px;
-        margin-left: 30px;
+      } 
+    }
+    .infoImg {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+      max-width: calc(100% / 2);
+      min-width: 150px;
+      margin: 0 auto;
+      img {
+        display: block;
+        width: 100%;
       }
     }
   }

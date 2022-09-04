@@ -74,9 +74,7 @@ const Header = () => {
 const StyledHeader = styled.header`
   display: flex;
   background-color: ${({ theme }) => theme.palette.cobaltBlue};
-  height: 70px;
   width: 100%;
-  align-items: center;
   justify-content: space-between;
   position: relative;
   .logo {
