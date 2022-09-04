@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import ApplyButton from '../Buttons/applyButton'
-import BookmarkButton from '../Buttons/BookmarkButton'
+// import BookmarkButton from '../Buttons/BookmarkButton'
+import FavoriteButton from '../FavoriteButton'
 import CloseButton from '../Buttons/CloseButton'
 
 const Card = props => {
@@ -20,7 +21,8 @@ const Card = props => {
           <div className="savingsLimit item">{props.savingsLimit}</div>
         </div>
         <div className="btn-wrap">
-          <BookmarkButton onBookmarkClick={props.onBookmarkClick} />
+          <FavoriteButton item={props.product} />
+          {/* <BookmarkButton onBookmarkClick={props.onBookmarkClick} /> */}
           <ApplyButton />
           <CloseButton onDeleteClick={props.onDeleteClick} />
         </div>

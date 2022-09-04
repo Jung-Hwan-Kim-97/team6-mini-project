@@ -1,26 +1,34 @@
-import { createSlice } from '@reduxjs/toolkit'
-import data from '../../data/data.json';
+import { createSlice, nanoid } from '@reduxjs/toolkit'
+import data from '../../data/data.json'
+import { useDispatch, useSelector } from 'react-redux'
 
-let firstCartList = data.result.baseList.slice(0, 2) //임시 
+let firstCartList = data.result.baseList.slice(0, 2) //임시
 
 let cartList = createSlice({
   name: 'cartList',
-  initialState:[
-    ...firstCartList
-  ],
+  initialState: {
+    cartList: [],
+  },
   reducers: {
-
-    addItem(state, action) {
-      state.push(action.payload)
+    addCartItem(state, action) {
+      state.cartList = state.cartList.concat(action.payload)
+      localStorage.setItem('cart', JSON.stringify(state.cartList))
     },
-    deleteItem(state, action) {
-      const index = state.findIndex((item) => item.id === action.payload)
-      state.splice(index, 1);
-    }
-  }
+    deleteCartItem(state, action) {
+      state.cartList = state.cartList.filter(item => {
+        return item.id !== action.payload.id
+      })
+      localStorage.setItem('cart', JSON.stringify(state.cartList))
+    },
+  },
 })
 
+export const useCart = () => {
+  const dispatch = useDispatch()
+  const cartList = useSelector(state => state.cartList.cartList)
+  return { dispatch, cartList }
+}
 
-export let { addItem, deleteItem } = cartList.actions
+export let { addCartItem, deleteCartItem } = cartList.actions
 
-export default cartList;
+export default cartList

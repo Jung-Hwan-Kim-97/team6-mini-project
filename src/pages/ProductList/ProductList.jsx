@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { useProduct } from '~/stores/productSlice'
 
@@ -6,6 +7,7 @@ import ProductItem from './ProductItem/ProductItem'
 
 const ProductList = () => {
   const { productList } = useProduct()
+  const navigate = useNavigate()
   return (
     <StyledProductList>
       <section className="pageTitle">
@@ -13,8 +15,22 @@ const ProductList = () => {
       </section>
 
       <section className="actions">
-        <button className="btn">예금</button>
-        <button className="btn">적금</button>
+        <button
+          className="btn"
+          onClick={() => {
+            navigate('/cart')
+          }}
+        >
+          장바구니
+        </button>
+        <button
+          className="btn"
+          onClick={() => {
+            navigate('/favorite')
+          }}
+        >
+          즐겨찾기
+        </button>
       </section>
 
       <section className="container">

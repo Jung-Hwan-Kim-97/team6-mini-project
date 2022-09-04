@@ -1,41 +1,61 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import PageIntroduction from '../../components/PageIntroduction'
-import Card from '../../components/Cart/Card'        
+import Card from '../../components/Cart/Card'
 import { useProduct } from '../../stores/productSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteItem } from '../../stores/reducers/cartSlice'
-import { applyItem } from '../../stores/reducers/MyServiceSlice';
-import { addFavorite } from '../../stores/favoriteSlice';
+import { deleteCartItem } from '../../stores/reducers/cartSlice'
+import { applyItem } from '../../stores/reducers/MyServiceSlice'
+import { addFavorite } from '../../stores/favoriteSlice'
+import { useCart } from '../../stores/reducers/cartSlice'
+import styled from 'styled-components'
 
 function Cart() {
-  // stores : productSlice.js -> 데이터
-  const { productList } = useProduct()
-  // useEffect(() => {
-  //   console.log()
-  // }, [])
-  const item = useSelector(state => state.cartList)
+  const { dispatch, cartList } = useCart()
 
-  console.log(item)
-  let dispatch = useDispatch();
+  const getCartList = JSON.parse(localStorage.getItem('cart'))
+  console.log(getCartList)
 
   return (
-    <div className="cart-container">
-      <PageIntroduction pagename="장바구니"/>
-      {
-        item.map( (product, index) =>{
-          return (<Card key={index}
-            bankName={product.kor_co_nm}
-            productName={product.fin_prdt_nm}
-            productDescription={product.mtrt_int}
-            savingsLimit={product.max_limit}
-            // onBookMarkClick={} 북마크 리덕스로 state 구현 완료시 넣기
-            onDeleteClick={()=> {dispatch(deleteItem(item[index].id))}}
-            onApplyClick={()=> {dispatch(applyItem(item[index].id))}}
-          />)
+    <StyledCart>
+      <PageIntroduction pagename="장바구니" />
+      {getCartList.length > 0 ? (
+        getCartList.map(product => {
+          return (
+            <Card
+              key={product.id}
+              bankName={product.kor_co_nm}
+              productName={product.fin_prdt_nm}
+              productDescription={product.mtrt_int}
+              savingsLimit={product.max_limit}
+              product={product}
+              // onBookMarkClick={} 북마크 리덕스로 state 구현 완료시 넣기
+              onDeleteClick={() => {
+                dispatch(deleteCartItem(product))
+              }}
+              onApplyClick={() => {
+                dispatch(applyItem(item[index].id))
+              }}
+            />
+          )
         })
-      } 
-    </div>
+      ) : (
+        <p className="null-text">장바구니를 추가 해 주세요!</p>
+      )}
+    </StyledCart>
   )
 }
+
+const StyledCart = styled.div`
+  border: 1px solid red;
+  height: 80vh;
+  .null-text {
+    position: absolute;
+    font-size: 30px;
+    top: 50%;
+    left: 40%;
+    color: #808080;
+    font-weight: 700;
+  }
+`
 
 export default Cart

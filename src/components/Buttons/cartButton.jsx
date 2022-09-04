@@ -1,32 +1,44 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FaShoppingCart } from 'react-icons/fa'
+import {
+  useCart,
+  addCartItem,
+  deleteCartItem,
+} from '../../stores/reducers/cartSlice'
 
-const ApplyButton = () => {
+const CartButton = ({ item }) => {
+  const { cartList, dispatch } = useCart()
+  const onCartIcon = cartList.some(element => element.id === item.id)
+
   return (
     <StyledBotton>
-      <div className='cart-button-container'>
-        <p>장바구니에 담기</p>
-        <button className="btn btn_cart">
-            <FaShoppingCart size="32" />
-        </button>
-      </div>
+      {onCartIcon ? (
+        <FaShoppingCart
+          size="30"
+          color="#FF9933"
+          onClick={() => {
+            dispatch(deleteCartItem(item))
+          }}
+        />
+      ) : (
+        <FaShoppingCart
+          size="30"
+          color="#2D71C4"
+          onClick={() => {
+            dispatch(addCartItem(item))
+          }}
+        />
+      )}
     </StyledBotton>
   )
 }
 
-export default ApplyButton
-
-const StyledBotton = styled.div`
-  p {
-    text-indent: -9999px;
-  }
-  .btn {
-    outline: none;
-    border: none;
-    color: ${({ theme }) => theme.palette.skyBlue};
-    cursor: pointer;
-    background-color: transparent;
-    padding: 0;
-  }
+const StyledBotton = styled.button`
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 `
+
+export default CartButton

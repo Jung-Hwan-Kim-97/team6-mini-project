@@ -61,16 +61,19 @@ const Footer = () => {
 }
 
 const StyledFooter = styled.div`
-  position: relative;
+  /* position: relative; */
   width: 100%;
   bottom: 0;
   height: 60px;
   background-color: ${({ theme }) => theme.palette.cobaltBlue};
   display: flex;
+  position: fixed;
+  bottom: 0;
 
   .etc-info {
     color: #fff;
-
+    position: relative;
+    width: 100%;
     li {
       margin-right: 12px;
       font-size: 12px;
