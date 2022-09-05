@@ -7,16 +7,14 @@ import {
   purchaseConfirmation,
   isVisibleHandler,
 } from '../stores/productSlice'
-import { deleteItem } from '../stores/reducers/cartSlice'
 
 const Modal = () => {
   const { dispatch, isVisible } = useProduct()
   const navigate = useNavigate()
-  const purchaseMode = (item) => {
+  const purchaseMode = () => {
     dispatch(isVisibleHandler())
     setTimeout(() => dispatch(modalHandler()), 700)
     dispatch(purchaseConfirmation())
-    //여기서 만약 장바구니 내에서 열리는 modal 창일 경우에 dispatch(deleteItem(props.item)) 을 실행해야함
     alert('신청이 완료되었습니다!')
     navigate('/purchaseList')
   }

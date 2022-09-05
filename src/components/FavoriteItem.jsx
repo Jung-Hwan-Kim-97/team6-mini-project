@@ -8,9 +8,8 @@ import {
   modalHandler,
   purchaseRequest,
 } from '../stores/productSlice'
-
 import FavoriteButton from './FavoriteButton'
-
+import CartButton from './Buttons/CartButton'
 function FavoriteItem({ item }) {
   const { dispatch } = useFavorite()
 
@@ -29,9 +28,7 @@ function FavoriteItem({ item }) {
         </div>
         <div className="button-box">
           <div className="action-buttons">
-            <button className="btn shopping-cart">
-              <FaShoppingCart color="#80BFDE" />
-            </button>
+            <CartButton item={item} />
             <FavoriteButton item={item} />
           </div>
           <div className="origin-buttons">

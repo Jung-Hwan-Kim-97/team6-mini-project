@@ -61,6 +61,7 @@ const StyledProductNotice = styled.div`
     }
   }
   .notice-body {
+    padding-bottom: 100px;
     .notice-body-container {
       .notice-body-title {
         margin: 12px 0;

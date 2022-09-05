@@ -51,6 +51,7 @@ const StyledPurchaseItem = styled.div`
   box-sizing: border-box;
   padding: 10px 0;
   display: flex;
+  color: #fff;
   justify-content: space-between;
   ul {
     padding: 10px;

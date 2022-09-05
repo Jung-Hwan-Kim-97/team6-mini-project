@@ -1,25 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
-import ApplyButton from '../Buttons/ApplyButton'
-import CloseButton from '../Buttons/CloseButton'
+import ApplyButton from '../Buttons/applyButton'
+// import BookmarkButton from '../Buttons/BookmarkButton'
 import FavoriteButton from '../FavoriteButton'
+import CloseButton from '../Buttons/CloseButton'
 
-const Card = (props) => {
+const Card = props => {
+  console.log(CloseButton)
   return (
     <StyledCard>
-      <div className='card-container'>
-        <div className="bankName item">{props.product.kor_co_nm}</div>
-        <div className="productName item">{props.product.fin_prdt_nm}</div>
-        <div className="productDescription item">{props.product.mtrt_int}</div>
+      <div className="card-container">
+        <div className="bankName item">{props.bankName}</div>
+        <div className="productName item">{props.productName}</div>
+        <div className="productDescription item">
+          {props.productDescription}
+        </div>
         <div className="moneyBox">
           <p className="moneyBoxText">저축한도 (월)</p>
-          <p className='moneyUnit'>₩</p>
-          <div className="savingsLimit item">{props.product.max_limit}</div>
+          <p className="moneyUnit">₩</p>
+          <div className="savingsLimit item">{props.savingsLimit}</div>
         </div>
-        <div className='btn-wrap'>
-          <FavoriteButton item={props.product}/>
-          <ApplyButton onApplyClick={props.product}/>
-          <CloseButton item={props.product} />
+        <div className="btn-wrap">
+          <FavoriteButton item={props.product} />
+          <ApplyButton />
+          <CloseButton onDeleteClick={props.onDeleteClick} />
         </div>
       </div>
     </StyledCard>
@@ -30,8 +34,8 @@ export default Card
 
 const StyledCard = styled.div`
   .card-container {
-    min-width: 350x;
-    max-width: 900px;
+    min-width: 300px;
+    max-width: 600px;
     display: grid;
     grid-template-rows: 50px 30px 1fr 1fr;
     grid-template-columns: repeat(3, 1fr);
@@ -68,14 +72,13 @@ const StyledCard = styled.div`
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 0.5em;
     justify-self: end;
-    align-self: center;
     align-items: center;
     justify-items: center;
+    margin-bottom: 20px;
   }
   .productName {
     grid-area: productName;
     font-size: 1.8em;
-    /* color: ${({ theme }) => theme.palette.cobaltBlue}}; */
   }
   .moneyBox {
     grid-area: savingsLimit;

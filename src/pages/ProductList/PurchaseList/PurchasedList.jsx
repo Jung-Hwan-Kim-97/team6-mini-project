@@ -34,9 +34,9 @@ const PurchasedList = () => {
 
       <section className="purchase-list-container">
         {getPurchasedItem.length > 0 ? (
-          getPurchasedItem.map(item => 
-            <PurchaseItem key={item.id} item={item} />
-          )
+          getPurchasedItem.map(item => {
+            return <PurchaseItem key={item.id} item={item} />
+          })
         ) : (
           <p className="null-text">구매내역이 존재하지 않습니다!</p>
         )}

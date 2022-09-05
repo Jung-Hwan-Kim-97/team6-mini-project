@@ -20,7 +20,7 @@ import Favorite from './pages/Favorite'
 import NotFound from './pages/NotFound'
 
 const App = () => {
-  const { onModal, productList } = useProduct()
+  const { onModal } = useProduct()
 
   return (
     <>

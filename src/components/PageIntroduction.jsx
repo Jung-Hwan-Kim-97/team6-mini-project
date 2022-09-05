@@ -14,8 +14,8 @@ const PageIntroduction = (props) => {
 export default PageIntroduction
 
 const StyledPageName = styled.div`
-  min-width: calc(100%/2 - 100px);
-  max-width: 900px;
+  width: calc(100%/2 - 100px);
+  min-width: 600px;
   margin: 20px auto;
   .pageName {
     font-size: 1.4em;
