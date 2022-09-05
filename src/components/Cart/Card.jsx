@@ -22,7 +22,6 @@ const Card = props => {
         </div>
         <div className="btn-wrap">
           <FavoriteButton item={props.product} />
-          {/* <BookmarkButton onBookmarkClick={props.onBookmarkClick} /> */}
           <ApplyButton />
           <CloseButton onDeleteClick={props.onDeleteClick} />
         </div>
@@ -80,7 +79,6 @@ const StyledCard = styled.div`
   .productName {
     grid-area: productName;
     font-size: 1.8em;
-    /* color: ${({ theme }) => theme.palette.cobaltBlue}}; */
   }
   .moneyBox {
     grid-area: savingsLimit;

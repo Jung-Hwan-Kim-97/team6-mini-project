@@ -10,7 +10,7 @@ import {
 } from '../../../../stores/productSlice'
 const SerchedProductItem = ({ item }) => {
   const navigate = useNavigate()
-  const { dispatch, isVisible, purchasedList } = useProduct()
+  const { dispatch, purchasedList } = useProduct()
   return (
     <StyledSerchedProductItem>
       <ul>

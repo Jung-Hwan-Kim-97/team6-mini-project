@@ -7,7 +7,9 @@ import 'aos/dist/aos.css'
 import HomeProduct from '../../components/HomeProduct'
 import HomeBanner from '../../components/HomeBanner'
 import HomeNav from '../../components/HomeNav'
-import HomeFavorite from '../../components/HomeFavorite'
+
+// import { getUserInfo, hasLocalData } from '../../utils'
+// import { productListData } from '../../data/homeData'
 
 const Home = () => {
   const { productList } = useProduct()
@@ -25,18 +27,14 @@ const Home = () => {
   const html = (
     <StyledWrapper>
       {/* 로그인 */}
-      {isLogin ? (
-        <StyledLoginArea>
-          <div>
-            <p>어서오세요, {userName} 님! 😊</p> <HomeFavorite />
-          </div>
-          <hr />
-        </StyledLoginArea>
-      ) : (
-        <StyledLoginArea>
-          로그인을 해주세요 <hr />
-        </StyledLoginArea>
-      )}
+
+      <StyledLoginArea>
+        {isLogin ? (
+          <p>어서오세요, {userName} 님! 😊</p>
+        ) : (
+          <p>로그인을 해주세요</p>
+        )}
+      </StyledLoginArea>
 
       {/* HomeBanner */}
       <HomeBanner dataList={productList} />

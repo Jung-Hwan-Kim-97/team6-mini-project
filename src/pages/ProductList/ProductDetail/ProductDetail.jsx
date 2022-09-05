@@ -7,7 +7,6 @@ import baseLogo from '~/assets/logo2.png'
 //react 관련 데이터
 import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { BsCart3 } from 'react-icons/bs'
 import ProductNotice from './ProductNotice'
 import {
   modalHandler,
@@ -15,22 +14,15 @@ import {
   purchaseRequest,
   isVisibleHandler,
 } from '~/stores/productSlice'
-import {
-  useCart,
-  addCartItem,
-  deleteCartItem,
-} from '../../../stores/reducers/cartSlice'
+import { useCart } from '../../../stores/reducers/cartSlice'
 import FavoriteButton from '../../../components/FavoriteButton'
 import CartButton from '../../../components/Buttons/CartButton'
-import { useState } from 'react'
 
 const ProductDetail = () => {
   const { state } = useLocation()
   const navigate = useNavigate()
   const { dispatch, purchasedList } = useProduct()
   const { cartList } = useCart()
-  const [onCartIcon, setOnCartIcon] = useState(false)
-  console.log(cartList)
 
   const purchaseRequestHandler = state => {
     if (purchasedList.some(purchasedItem => purchasedItem.id === state.id)) {
@@ -65,25 +57,6 @@ const ProductDetail = () => {
         <div className="product-icons">
           <FavoriteButton item={state} />
           <CartButton item={state} />
-          {/* {onCartIcon ? (
-            <BsCart3
-              size="30"
-              color="#FF9933"
-              onClick={() => {
-                dispatch(deleteCartItem(state))
-                setOnCartIcon(!onCartIcon)
-              }}
-            />
-          ) : (
-            <BsCart3
-              size="30"
-              color="#2D71C4"
-              onClick={() => {
-                dispatch(addCartItem(state))
-                setOnCartIcon(!onCartIcon)
-              }}
-            />
-          )} */}
         </div>
 
         <div className="detail-info">

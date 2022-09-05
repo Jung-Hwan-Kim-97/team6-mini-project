@@ -1,18 +1,26 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { buttonList } from '../data/homeData'
 
 function HomeNav() {
-  const [iconValue, setIconValue] = useState('')
-
+  const navigate = useNavigate()
   const navHandler = useCallback(
     e => {
-      const value = e.currentTarget.getAttribute('name')
-      setIconValue(value)
-      alert(`${value} 서비스는 추가 예정입니다! 😭`)
+      const nameValue = e.currentTarget.getAttribute('name')
+      const urlValue = e.currentTarget.getAttribute('url')
+
+      if (urlValue === 'null') {
+        alert(`${nameValue} 서비스는 추가 예정입니다! 😭`)
+        return
+      } else {
+        navigate(urlValue)
+      }
     },
-    [iconValue],
+    [navigate],
   )
+
+  useEffect(() => {}, [navigate])
 
   return (
     <StyledHomeNav>
@@ -23,8 +31,9 @@ function HomeNav() {
           return (
             <div
               className="icon"
-              key={list.id}
               name={list.name}
+              key={list.id}
+              url={list.path}
               onClick={navHandler}
             >
               <list.icon className="icon" size="35" />
