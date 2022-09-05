@@ -30,7 +30,7 @@ function Favorite() {
 const StyledFavoritePage = styled.main`
   margin: auto;
   width: 100%;
-  min-height: calc(100vh - 130px);
+  min-height: calc(100vh - 126px);
   display: flex;
   flex-direction: column;
   align-items: center;

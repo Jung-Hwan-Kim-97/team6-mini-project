@@ -47,7 +47,7 @@ function Cart() {
 
 const StyledCart = styled.div`
   border: 1px solid red;
-  height: 80vh;
+  min-height: calc(100vh - 126px);
   .null-text {
     position: absolute;
     font-size: 30px;

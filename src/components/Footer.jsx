@@ -67,8 +67,6 @@ const StyledFooter = styled.div`
   height: 60px;
   background-color: ${({ theme }) => theme.palette.cobaltBlue};
   display: flex;
-  position: fixed;
-  bottom: 0;
 
   .etc-info {
     color: #fff;

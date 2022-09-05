@@ -1,19 +1,16 @@
 //Home에서 사용 중
-import {
-  RiMoneyDollarBoxFill,
-  RiCustomerService2Fill,
-} from 'react-icons/ri'
+import {  RiMoneyDollarBoxFill,  RiCustomerService2Fill,} from 'react-icons/ri'
 import { FaHeart, FaShoppingCart } from 'react-icons/fa'
 import { SiAdguard } from 'react-icons/si'
 import {AiFillAccountBook} from 'react-icons/ai'
 import { nanoid } from 'nanoid'
 
-export const buttonList = [
-  { name: '제품 목록', icon: RiMoneyDollarBoxFill, id: nanoid(), path: '/productlist' },
-  { name: '구매 목록', icon: AiFillAccountBook, id: nanoid(), path: '/purchaseList' },
-  { name: '관심 상품', icon: FaHeart, id: nanoid(), path: '/favorite' },
-  { name: '장바구니', icon: FaShoppingCart, id: nanoid(), path: '/cart' },
-  { name: '소비자 보호', icon: SiAdguard, id: nanoid(), path: 'null' },
+export const buttonList = [  
+  { name: '제품 목록', icon: RiMoneyDollarBoxFill, id: nanoid(), path: '/productlist' },  
+  { name: '구매 목록', icon: AiFillAccountBook, id: nanoid(), path: '/purchaseList' }, 
+  { name: '관심 상품', icon: FaHeart, id: nanoid(), path: '/favorite' },  
+  { name: '장바구니', icon: FaShoppingCart, id: nanoid(), path: '/cart' },  
+  { name: '소비자 보호', icon: SiAdguard, id: nanoid(), path: 'null' },  
   { name: '상담/예약', icon: RiCustomerService2Fill, id: nanoid(), path: 'null' },
 ]
 
@@ -43,3 +40,9 @@ export  function getRandomInt(min, max) {
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min)) + min //최댓값은 제외, 최솟값은 포함
   }
+
+export const productListData = [
+  {title: '고객님을 위한 맞춤 추천! 🌟', aosDuration: '1800', id: nanoid()},
+  {title: 'FastBank의 또 다른 추천 상품을 확인해 보세요! 😎', aosDuration: '1500', id: nanoid()},
+  {title: '이런 상품은 어떠세요? 🤔', aosDuration: 'init', id: nanoid()},
+]

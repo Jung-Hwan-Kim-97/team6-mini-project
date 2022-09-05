@@ -48,7 +48,7 @@ const PurchasedList = () => {
 const StyledPurchaseList = styled.div`
   margin: auto;
   width: 1320px;
-  height: 600px;
+  height: calc(100vh - 126px);
   display: flex;
   flex-direction: column;
   align-items: center;

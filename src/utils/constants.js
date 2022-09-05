@@ -9,6 +9,7 @@ const ID_LABEL = {
   password: '비밀번호',
   confirm_password: '비밀번호 확인',
   phone: '전화번호',
+  age: '나이',
 }
 const FORM_REGEX = {
   name: /^[ㄱ-ㅎ가-힣]{2,4}$/,
@@ -27,10 +28,11 @@ const FORM_ERR_MSG = {
   invalidAgeMin: '최소 20세까지 가능합니다.',
 }
 const PLACEHOLDER = {
-  name: '실명을 입력 해주세요',
-  email: 'abcde@naver.com',
+  name: 'ex) 홍길동',
+  email: 'ex) abcde@naver.com',
   password: '********',
-  phone: '010-1234-5678',
+  phone: 'ex) 010-1234-5678',
+  age: 'ex) 20',
 }
 const JOB_ARR = ['무직', '회사원', '자영업', '주부', '기타']
 export {
