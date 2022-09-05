@@ -8,7 +8,6 @@ import HomeProduct from '../../components/HomeProduct'
 import HomeBanner from '../../components/HomeBanner'
 import HomeNav from '../../components/HomeNav'
 import { getUserInfo, hasLocalData } from '../../utils'
-import HomeButton from '../../components/HomeButton'
 import { productListData } from '../../data/homeData'
 
 const Home = () => {
@@ -49,11 +48,6 @@ const Home = () => {
         ) : (
           <p>로그인을 해주세요</p>
         )}
-        {/* 관심상품/장바구니 버튼 */}
-        <div>
-          <HomeButton urlPath="/favorite" name="관심상품 🌟" />
-          <HomeButton urlPath="/cart" name="장바구니 👜" />
-        </div>
       </StyledLoginArea>
 
       {/* HomeBanner */}
