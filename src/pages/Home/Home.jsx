@@ -108,7 +108,8 @@ const StyledLoginArea = styled.div`
   flex-grow: 1;
   font-size: 21px;
   font-weight: 500;
-
+  border-bottom: 1px solid gray;
+  padding-bottom: 8px;
   div {
     display: flex;
     justify-content: space-between;

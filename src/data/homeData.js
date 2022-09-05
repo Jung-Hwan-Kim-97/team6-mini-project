@@ -4,13 +4,13 @@ import {
   RiCustomerService2Fill,
 } from 'react-icons/ri'
 import { FaHeart, FaShoppingCart } from 'react-icons/fa'
-import { TbZoomMoney } from 'react-icons/tb'
 import { SiAdguard } from 'react-icons/si'
+import {AiFillAccountBook} from 'react-icons/ai'
 import { nanoid } from 'nanoid'
 
 export const buttonList = [
-  { name: '제품 목록', icon: RiMoneyDollarBoxFill, id: nanoid(), path: 'null' },
-  { name: '계좌 조회', icon: TbZoomMoney, id: nanoid(), path: 'null' },
+  { name: '제품 목록', icon: RiMoneyDollarBoxFill, id: nanoid(), path: '/productlist' },
+  { name: '구매 목록', icon: AiFillAccountBook, id: nanoid(), path: '/purchaseList' },
   { name: '관심 상품', icon: FaHeart, id: nanoid(), path: '/favorite' },
   { name: '장바구니', icon: FaShoppingCart, id: nanoid(), path: '/cart' },
   { name: '소비자 보호', icon: SiAdguard, id: nanoid(), path: 'null' },
