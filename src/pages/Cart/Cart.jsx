@@ -46,7 +46,6 @@ function Cart() {
 }
 
 const StyledCart = styled.div`
-  border: 1px solid red;
   min-height: calc(100vh - 126px);
   .null-text {
     position: absolute;
