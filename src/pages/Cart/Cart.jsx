@@ -18,7 +18,7 @@ function Cart() {
   return (
     <StyledCart>
       <PageIntroduction pagename="장바구니" />
-      {getCartList.length > 0 ? (
+      {getCartList?.length > 0 ? (
         getCartList.map(product => {
           return (
             <Card

@@ -33,7 +33,7 @@ const PurchasedList = () => {
       </section>
 
       <section className="purchase-list-container">
-        {getPurchasedItem.length > 0 ? (
+        {getPurchasedItem?.length > 0 ? (
           getPurchasedItem.map(item => {
             return <PurchaseItem key={item.id} item={item} />
           })
