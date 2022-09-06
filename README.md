@@ -91,6 +91,13 @@ Netlify: [Netlify 배포페이지](https://idyllic-pothos-a052f5.netlify.app)
 - 관심 상품 추가 시 redux-store 및 localStorage에 저장
 - 관심 상품 삭제 시 redux-store 및 localStorage에 삭제
 
+### 장바구니
+- Button, Card components를 생성해서 재사용할 수 있도록 관리
+- 상품 카드의 관심 상품 기능 연결
+- 상품 카드의 장바구니 담기 기능 연결
+- 상품 카드의 장바구니에 담기 버튼을 클릭시 redux-store 및 localStorage에서 저장
+- 상품 카드의 삭제하기 버튼을 클릭시 redux-store 및 localStorage에서 삭제
+
 ## 회고 / 간단 정리
 
 ### 원윤희
@@ -103,3 +110,9 @@ Netlify: [Netlify 배포페이지](https://idyllic-pothos-a052f5.netlify.app)
 ### 최준석
 - 협업을 하면서 배우고 느낀점이 많았다.
 - api가 완성되지 않아 연결하지 못한 부분이 아쉽다.
+
+### 홍서영
+- 협업 시 컴포넌트 부분에 대한 충분한 기획 및 회의의 필요성을 체감함.
+- 스파게티 코드가 되지 않도록 최대한 신경 쓰면서 작업함.
+- api를 활용하지 못한 점이 아쉬움.
+- 결과적으로 팀원들과의 원활한 소통의 중요성과 코딩은 혼자 하는 것이 아니라 서로 도우면서 하는 것을 깨닫게 되는 계기가 되었다.
